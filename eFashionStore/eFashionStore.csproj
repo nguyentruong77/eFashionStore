@@ -97,8 +97,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\eFashionStore.designer.cs" />
-    <Compile Include="Data\eFashionStore1.designer.cs">
+    <Compile Include="Data\eFashionStore.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>eFashionStore.dbml</DependentUpon>
@@ -112,7 +111,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Data\eFashionStore.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>eFashionStore1.designer.cs</LastGenOutput>
+      <LastGenOutput>eFashionStore.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <None Include="Data\eFashionStore.dbml.layout">

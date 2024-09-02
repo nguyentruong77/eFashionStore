@@ -13,7 +13,7 @@ namespace eFashionStore.Controllers
         // GET: HangHoa
         public ActionResult Index()
         {
-            List<HangHoa> ds = da.HangHoas.OrderByDescending(p => p.MaHH).ToList();
+            List<SanPham> ds = da.SanPhams.OrderByDescending(p => p.MaSP).ToList();
             return View(ds);
         }
     }
