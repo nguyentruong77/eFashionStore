@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eFashionStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,12 @@ namespace eFashionStore.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        eFashionStoreDataContext da = new eFashionStoreDataContext();
+        // GET: HangHoa
         public ActionResult Index()
         {
-            return View();
+            List<SanPham> ds = da.SanPhams.OrderByDescending(p => p.MaSP).ToList();
+            return View(ds);
         }
     }
 }

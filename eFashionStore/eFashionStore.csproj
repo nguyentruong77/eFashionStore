@@ -45,6 +45,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
@@ -89,15 +98,79 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\store\cart.html" />
+    <Content Include="Content\store\contact.html" />
+    <Content Include="Content\store\css\bootstrap.css" />
+    <Content Include="Content\store\css\flexslider.css" />
+    <Content Include="Content\store\css\font-awesome.min.css" />
+    <Content Include="Content\store\css\sequence-looptheme.css" />
+    <Content Include="Content\store\css\style.css" />
+    <Content Include="Content\store\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\store\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\store\images\activeden.png" />
+    <Content Include="Content\store\images\address.png" />
+    <Content Include="Content\store\images\arow_left.png" />
+    <Content Include="Content\store\images\arow_right.png" />
+    <Content Include="Content\store\images\banner-small-01.png" />
+    <Content Include="Content\store\images\banner_index_1.png" />
+    <Content Include="Content\store\images\banner_index_2.png" />
+    <Content Include="Content\store\images\banner_index_3.png" />
+    <Content Include="Content\store\images\bg.jpg" />
+    <Content Include="Content\store\images\black_transparent50.png" />
+    <Content Include="Content\store\images\carticon.png" />
+    <Content Include="Content\store\images\down-arow-2.png" />
+    <Content Include="Content\store\images\down-arow.png" />
+    <Content Include="Content\store\images\envato.png" />
+    <Content Include="Content\store\images\f.png" />
+    <Content Include="Content\store\images\favicon.png" />
+    <Content Include="Content\store\images\fbicon.png" />
+    <Content Include="Content\store\images\fblike.png" />
+    <Content Include="Content\store\images\gplus.png" />
+    <Content Include="Content\store\images\grid-icon.png" />
+    <Content Include="Content\store\images\in.png" />
+    <Content Include="Content\store\images\list-icon.png" />
+    <Content Include="Content\store\images\loginbg.png" />
+    <Content Include="Content\store\images\logo.png" />
+    <Content Include="Content\store\images\message.png" />
+    <Content Include="Content\store\images\more-icon.png" />
+    <Content Include="Content\store\images\phone.png" />
+    <Content Include="Content\store\images\photodune.png" />
+    <Content Include="Content\store\images\promotion-01.png" />
+    <Content Include="Content\store\images\promotion-02.png" />
+    <Content Include="Content\store\images\promotion-03.png" />
+    <Content Include="Content\store\images\regbg.png" />
+    <Content Include="Content\store\images\remove.png" />
+    <Content Include="Content\store\images\search-bg.png" />
+    <Content Include="Content\store\images\share.png" />
+    <Content Include="Content\store\images\slide_index_1.jpg" />
+    <Content Include="Content\store\images\slide_index_2.jpg" />
+    <Content Include="Content\store\images\star.png" />
+    <Content Include="Content\store\images\themeforest.png" />
+    <Content Include="Content\store\images\twi.png" />
+    <Content Include="Content\store\images\up-arow.png" />
+    <Content Include="Content\store\js\bootstrap.min.js" />
+    <Content Include="Content\store\js\jquery-1.10.2.min.js" />
+    <Content Include="Content\store\js\jquery.carouFredSel-6.2.1-packed.js" />
+    <Content Include="Content\store\js\jquery.easing.1.3.js" />
+    <Content Include="Content\store\js\jquery.elevatezoom.js" />
+    <Content Include="Content\store\js\jquery.flexslider.js" />
+    <Content Include="Content\store\js\jquery.sequence-min.js" />
+    <Content Include="Content\store\js\script.min.js" />
+    <Content Include="Content\store\login.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HangHoaController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\eFashionStore.designer.cs">
+    <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\RateModel.cs" />
+    <Compile Include="Models\eFashionStore.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>eFashionStore.dbml</DependentUpon>
@@ -105,23 +178,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Data\eFashionStore.dbml">
+    <Content Include="Models\eFashionStore.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>eFashionStore.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Data\eFashionStore.dbml.layout">
+    <Content Include="Content\store\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\store\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\store\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\store\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\store\fonts\FontAwesome.otf" />
+    <Content Include="Content\store\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\store\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\store\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\store\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Models\eFashionStore.dbml.layout">
       <DependentUpon>eFashionStore.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\HangHoa\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Cart\ListCarts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -131,7 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
