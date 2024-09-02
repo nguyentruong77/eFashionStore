@@ -38,10 +38,10 @@
                                 <div class="col-md-3 col-sm-6">
                                     <div class="products">
                                         <div class="offer">- @item.GiamGia</div>
-                                        <div class="thumbnail"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="thumbnail"><a href="@Url.Action("Details", "Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
                                         <div class="productname">ㅤ</div>
                                         <div class="productname">ㅤ</div>
-                                        <div class="productname"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <div class="productname"><a href="@Url.Action("Details", "Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
                                         <h4 class="price">
                                             @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
                                             <small class="old-price">
@@ -59,9 +59,12 @@
                                                 }
                                         </style>
                                         <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
                                             <div class="button_group">
-
-                                                <input type="hidden" name="id" value="@item.MaSP.Trim()" />
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
                                                 <button type="submit" class="button add-cart">Add To Cart</button>
                                                 <button class="button wishlist" type="button">
                                                     <i class="fa fa-heart-o">
@@ -85,10 +88,10 @@
                                 <div class="col-md-3 col-sm-6">
                                     <div class="products">
                                         <div class="offer">- @item.GiamGia</div>
-                                        <div class="thumbnail"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="thumbnail"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
                                         <div class="productname">ㅤ</div>
                                         <div class="productname">ㅤ</div>
-                                        <div class="productname"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <div class="productname"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
                                         <h4 class="price">
                                             @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
                                             <small class="old-price">
@@ -96,9 +99,12 @@
                                             </small>
                                         </h4>
                                         <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
                                             <div class="button_group">
-
-                                                <input type="hidden" name="id" value="@item.MaSP.Trim()" />
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
                                                 <button type="submit" class="button add-cart">Add To Cart</button>
                                                 <button class="button wishlist" type="button">
                                                     <i class="fa fa-heart-o">
@@ -128,10 +134,10 @@
                             {
                                 <div class="col-md-3 col-sm-6">
                                     <div class="products">
-                                        <div class="thumbnail"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="thumbnail"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
                                         <div class="productname">ㅤ</div>
                                         <div class="productname">ㅤ</div>
-                                        <div class="productname"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <div class="productname"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
                                         <h4 class="price">
                                             @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
                                             <small class="old-price">
@@ -139,9 +145,12 @@
                                             </small>
                                         </h4>
                                         <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
                                             <div class="button_group">
-
-                                                <input type="hidden" name="id" value="@item.MaSP.Trim()" />
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
                                                 <button type="submit" class="button add-cart">Add To Cart</button>
                                                 <button class="button wishlist" type="button">
                                                     <i class="fa fa-heart-o">
@@ -164,10 +173,10 @@
                             {
                                 <div class="col-md-3 col-sm-6">
                                     <div class="products">
-                                        <div class="thumbnail"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="thumbnail"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
                                         <div class="productname">ㅤ</div>
                                         <div class="productname">ㅤ</div>
-                                        <div class="productname"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <div class="productname"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
                                         <h4 class="price">
                                             @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
                                             <small class="old-price">
@@ -175,9 +184,12 @@
                                             </small>
                                         </h4>
                                         <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
                                             <div class="button_group">
-
-                                                <input type="hidden" name="id" value="@item.MaSP.Trim()" />
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
                                                 <button type="submit" class="button add-cart">Add To Cart</button>
                                                 <button class="button wishlist" type="button">
                                                     <i class="fa fa-heart-o">

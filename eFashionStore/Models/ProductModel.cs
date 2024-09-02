@@ -10,5 +10,8 @@ namespace eFashionStore.Models
     {
         public IEnumerable<LoaiSP> LoaiSPs { get; set; }
         public IPagedList<SanPham> SanPhams { get; set; }
+
+        public SanPham ItemDetails { get; set; }
+        public List<RateModel> Reviews { get; set; }
     }
 }
