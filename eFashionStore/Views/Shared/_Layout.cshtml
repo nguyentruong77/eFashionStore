@@ -35,9 +35,27 @@
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="usermenu">
-                                        <li><a href="checkout.html" class="log">Login</a></li>
-                                        <li><a href="checkout2.html" class="reg">Register</a></li>
+                                        @{
+                                            var isAuthenticated = Session["UserName"] != null;
+                                            var userName = isAuthenticated ? Session["UserName"].ToString() : "Guest";
+                                        }
+                                        @if (isAuthenticated)
+                                        {
+                                            <li><a href="#" class="log"> @userName</a></li>
+                                            <li>
+                                                <a href="#" class="reg" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                @Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logout-form", style = "display:none;" })
+                                                {
+                                                }
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="@Url.Action("Login", "Account")" class="log">Login</a></li>
+                                            <li><a href="@Url.Action("Register", "Account")" class="reg">Register</a></li>
+                                        }
                                     </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -48,7 +66,7 @@
                                     <form action="@Url.Action("Search", "Product")" method="get"><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" value="" name="key"></form>
                                 </li>
                                 <li class="option-cart">
-                                    <a href="@Url.Action("index", "Cart")" class="cart-icon">cart <span class="cart_no"></span></a>
+                                    <a href="@Url.Action("ListCarts", "Cart")" class="cart-icon">cart <span class="cart_no"></span></a>
                                 </li>
                             </ul>
                             <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
