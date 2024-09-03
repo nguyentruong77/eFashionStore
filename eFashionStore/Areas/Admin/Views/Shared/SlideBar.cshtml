@@ -6,23 +6,23 @@
         <li class="nav-item">
             <a class="nav-link " href="@Url.Action("Index","HomeAdmin")">
                 <i class="bi bi-grid"></i>
-                <span>Trang chủ</span>
+                <span>Home Admin</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Quản lý</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-menu-button-wide"></i><span>Product Management</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="@Url.Action("KindPR","ProduceAdmin")">
-                        <i class="bi bi-circle"></i><span>Loại sản phẩm</span>
+                    <a href="@Url.Action("ListPT","ProductAdmin")">
+                        <i class="bi bi-circle"></i><span>Product type</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("BrandPR","ProduceAdmin")">
-                        <i class="bi bi-circle"></i><span>Hãng sản xuất</span>
+                    <a href="@Url.Action("ListCP","ProductAdmin")">
+                        <i class="bi bi-circle"></i><span>Coupon</span>
                     </a>
                 </li>
             </ul>
@@ -30,7 +30,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Khách hàng</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-journal-text"></i><span>Custommers</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     <a href="@Url.Action("OrderUser","OrderAdmin")">
-                        <i class="bi bi-circle"></i><span>Đơn hàng</span>
+                        <i class="bi bi-circle"></i><span>Order</span>
                     </a>
                 </li>
 
@@ -49,7 +49,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="@Url.Action("Index", "Home", new {area = ""})">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Quay lại</span>
+                <span>Back to shopping</span>
             </a>
         </li>
     </ul>

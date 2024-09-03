@@ -9,11 +9,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Danh sách sản phẩm</h1>
+        <h1>Product list</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="@Url.Action("Index","HomeAdmin")">Home</a></li>
-                <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+                <li class="breadcrumb-item active">Product list</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -32,30 +32,27 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayName("Sản phẩm")
+                    @Html.DisplayName("Product")
                 </th>
                 <th>
-                    @Html.DisplayName("Bảo hành")
+                    @Html.DisplayName("Image")
                 </th>
                 <th>
-                    @Html.DisplayName("Hình ảnh")
+                    @Html.DisplayName("Price")
                 </th>
                 <th>
-                    @Html.DisplayName("Giá")
+                    @Html.DisplayName("Inventory")
                 </th>
                 <th>
-                    @Html.DisplayName("Số lượng")
+                    @Html.DisplayName("Quantity")
                 </th>
                 <th>
-                    @Html.DisplayName("Trạng thái")
+                    @Html.DisplayName("Discount")
                 </th>
                 <th>
-                    @Html.DisplayName("Hãng sản xuất")
+                    @Html.DisplayName("Product type")
                 </th>
-                <th>
-                    @Html.DisplayName("Loại sản phẩm")
-                </th>
-                <th>Khác</th>
+                <th>Other</th>
                 <th>...</th>
             </tr>
 
@@ -66,28 +63,28 @@
                         @Html.DisplayFor(modelItem => item.TenSP)
                     </td>
                     <td>
-                        <img style="width:50px; height:50px" src="@Html.DisplayFor(modelItem => item.IMGSP1)" />
+                        <img style="width:50px; height:50px" src="@Html.DisplayFor(modelItem => item.Hinh)" />
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.GIA)
+                        @Html.DisplayFor(modelItem => item.Gia)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SOLUONGSP)
+                        @Html.DisplayFor(modelItem => item.TonKho)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TRANGTHAI)
+                        @Html.DisplayFor(modelItem => item.SoLuong)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.HANGSX.TENNSX)
+                        @Html.DisplayFor(modelItem => item.GiamGia)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LOAISP.TENLOAI)
+                        @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
                     </td>
                     <td>
-                        @Html.ActionLink("Chỉnh sửa", "UpdateProduce", "ProduceAdmin", new { id = item.MASP }, null)
+                        @Html.ActionLink("Edit", "UpdatePR", "ProductAdmin", new { id = item.MaSP }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Xem chi tiết", "DetailPRAdmin", "ProduceAdmin", new { id = item.MASP }, null)
+                        @Html.ActionLink("Detail", "DetailPRAdmin", "ProductAdmin", new { id = item.MaSP }, null)
                     </td>
                 </tr>
             }
@@ -98,11 +95,11 @@
                 @if (Model.PageCount > 1)
                 {
                     <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Đầu</a>
+                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">First</a>
                     </li>
 
                     <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("Index","HomeAdmin",  new { page = Model.PageNumber - 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Trước</a>
+                        <a class="page-link" href="@Url.Action("Index","HomeAdmin",  new { page = Model.PageNumber - 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Previous</a>
                     </li>
                     for (int i = 1; i <= Model.PageCount; i++)
                     {
@@ -112,17 +109,17 @@
                     }
 
                     <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = Model.PageNumber + 1 })">Sau</a>
+                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = Model.PageNumber + 1 })">Next</a>
                     </li>
 
                     <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = Model.PageCount })">Cuối</a>
+                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = Model.PageCount })">End</a>
                     </li>
                 }
             </ul>
         </nav>
         <p>
-            <button class="btn btn-primary" onclick="window.location.href='@Url.Action("MorePR","ProduceAdmin")'">Thêm sản phẩm mới</button>
+            <button class="btn btn-primary" onclick="window.location.href='@Url.Action("CreatePR","ProductAdmin")'">Create new product</button>
         </p>
     </section>
 </main>
