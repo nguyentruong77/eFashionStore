@@ -81,9 +81,7 @@ namespace eFashionStore.Controllers
 
         private int? GetUserId()
         {
-            var userIdString = Session["UserId"] as string;
-
-            if (int.TryParse(userIdString, out int userId))
+            if (Session != null && Session["UserId"] is int userId)
             {
                 return userId;
             }
@@ -121,7 +119,7 @@ namespace eFashionStore.Controllers
             }
 
             da.SubmitChanges();
-            return RedirectToAction("Details", new { id = MaSp });
+            return RedirectToAction("Details", new { id = MaSp.Trim() });
         }
     }
 }
