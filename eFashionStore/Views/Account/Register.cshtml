@@ -1,0 +1,100 @@
+﻿<link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<div class="wrapper">
+    <div class="container_fullwidth">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="checkout-page">
+                        <ol class="checkout-steps">
+                            <li class="steps active">
+                                <a class="step-title">
+                                    FlatShop
+                                </a>
+                                <div class="step-description">
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="run-customer">
+                                                <h5>
+                                                    Register
+                                                </h5>
+                                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "row g-3 needs-validation", @novalidate = "novalidate" }))
+                                                {
+                                                    <div class="col-6">
+                                                        @Html.Label("Username:", null, new { @class = "form-label" })
+                                                        @Html.TextBox("TenTaiKhoan", null, new { @class = "form-control", @id = "yourUsername", @required = "required", @minlength = "6" })
+                                                        @if (ViewBag.TenTKError != null)
+                                                        {
+                                                            <span class="badge badge-danger" style="color:red">@ViewBag.TenTKError</span>
+                                                        }
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        @Html.Label("Full name:", null, new { @class = "form-label" })
+                                                        @Html.TextBox("HoTen", null, new { @class = "form-control", @id = "yourFullName", @required = "required", @minlength = "6" })
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        @Html.Label("Email:", null, new { @class = "form-label" })
+                                                        @Html.TextBox("Email", null, new { @class = "form-control", @id = "yourEmail", @type = "email", @required = "required" })
+                                                        @if (ViewBag.EmailError != null)
+                                                        {
+                                                            <span class="badge badge-danger" style="color:red">@ViewBag.EmailError</span>
+                                                        }
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        @Html.Label("Password:", null, new { @class = "form-label" })
+                                                        @Html.Password("MatKhau", null, new { @class = "form-control", @id = "yourPassword", @required = "required", @minlength = "6" })
+                                                    </div>
+                                                    <div class="col-12">
+                                                        @Html.Label("Address:", null, new { @class = "form-label" })
+                                                        @Html.TextBox("DiaChi", null, new { @class = "form-control", @required = "required" })
+                                                    </div>
+                                                    <div class="col-12">
+                                                        @Html.Label("Phone:", null, new { @class = "form-label" })
+                                                        @Html.TextBox("Sdt", null, new { @class = "form-control", @type = "number", @required = "required", @minlength = "10", @maxlength = "11" })
+                                                        @if (ViewBag.SDTError != null)
+                                                        {
+                                                            <span class="badge badge-danger" style="color:red">@ViewBag.SDTError</span>
+                                                        }
+                                                    </div>
+
+                                                    <!-- ... other form fields ... -->
+                                                    <br />
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn btn-primary">Register</button>
+                                                    </div>
+                                                    <div>
+                                                        @if (ViewBag.ThieuThongTin != null)
+                                                        {
+                                                            <span class="badge badge-danger" style="color:red">@ViewBag.ThieuThongTin</span>
+                                                        }
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p class="small mb-0">You already have an account? <a href="@Url.Action("Login","Account")">Login</a></p>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+            <div class="our-brand">
+            </div>
+            <div class="our-brand">
+            </div>
+            <div class="our-brand">
+            </div>
+        </div>
+    </div>
+
+</div>

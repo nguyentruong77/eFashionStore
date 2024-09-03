@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="eFashionStore" Class="eFashionStoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.ChiTietGioHang" Member="ChiTietGioHangs">
+    <Type Name="ChiTietGioHang">
+      <Column Name="MaGH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SanPham_ChiTietGioHang" Member="SanPham" ThisKey="MaSP" OtherKey="MaSP" Type="SanPham" IsForeignKey="true" />
+      <Association Name="GioHang_ChiTietGioHang" Member="GioHang" ThisKey="MaGH" OtherKey="MaGH" Type="GioHang" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SanPham" Member="SanPhams">
+    <Type Name="SanPham">
+      <Column Name="MaSP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hinh" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TonKho" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="GiamGia" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="MaLoai" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="SanPham_ChiTietGioHang" Member="ChiTietGioHangs" ThisKey="MaSP" OtherKey="MaSP" Type="ChiTietGioHang" />
+      <Association Name="SanPham_ChiTietHoaDon" Member="ChiTietHoaDons" ThisKey="MaSP" OtherKey="MaSP" Type="ChiTietHoaDon" />
+      <Association Name="LoaiSP_SanPham" Member="LoaiSP" ThisKey="MaLoai" OtherKey="MaLoai" Type="LoaiSP" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietHoaDon" Member="ChiTietHoaDons">
+    <Type Name="ChiTietHoaDon">
+      <Column Name="MaSP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaHD" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoLuongDatHang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DonGia" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="SanPham_ChiTietHoaDon" Member="SanPham" ThisKey="MaSP" OtherKey="MaSP" Type="SanPham" IsForeignKey="true" />
+      <Association Name="HoaDon_ChiTietHoaDon" Member="HoaDon" ThisKey="MaHD" OtherKey="MaHD" Type="HoaDon" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Coupon" Member="Coupons">
+    <Type Name="Coupon">
+      <Column Name="MaCoupon" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GiamGia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Coupon_HoaDon" Member="HoaDons" ThisKey="MaCoupon" OtherKey="MaCoupon" Type="HoaDon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DanhGia" Member="DanhGias">
+    <Type Name="DanhGia">
+      <Column Name="MaSP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoSao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BinhLuan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="NguoiDung_DanhGia" Member="NguoiDung" ThisKey="MaKH" OtherKey="UserID" Type="NguoiDung" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GioHang" Member="GioHangs">
+    <Type Name="GioHang">
+      <Column Name="MaGH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="GioHang_ChiTietGioHang" Member="ChiTietGioHangs" ThisKey="MaGH" OtherKey="MaGH" Type="ChiTietGioHang" />
+      <Association Name="NguoiDung_GioHang" Member="NguoiDung" ThisKey="MaKH" OtherKey="UserID" Type="NguoiDung" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDon" Member="HoaDons">
+    <Type Name="HoaDon">
+      <Column Name="MaHD" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayDatHang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DiaChiGiaoHang" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TongGiaTri" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TrangThaiTT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TrangThaiDH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayNhanHang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MaCoupon" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="HoaDon_ChiTietHoaDon" Member="ChiTietHoaDons" ThisKey="MaHD" OtherKey="MaHD" Type="ChiTietHoaDon" />
+      <Association Name="Coupon_HoaDon" Member="Coupon" ThisKey="MaCoupon" OtherKey="MaCoupon" Type="Coupon" IsForeignKey="true" />
+      <Association Name="NguoiDung_HoaDon" Member="NguoiDung" ThisKey="MaNV" OtherKey="UserID" Type="NguoiDung" IsForeignKey="true" />
+      <Association Name="NguoiDung_HoaDon1" Member="NguoiDung1" ThisKey="MaKH" OtherKey="UserID" Type="NguoiDung" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoaiSP" Member="LoaiSPs">
+    <Type Name="LoaiSP">
+      <Column Name="MaLoai" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Hinh" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="LoaiSP_SanPham" Member="SanPhams" ThisKey="MaLoai" OtherKey="MaLoai" Type="SanPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NguoiDung" Member="NguoiDungs">
+    <Type Name="NguoiDung">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TenTaiKhoan" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IsAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="NguoiDung_DanhGia" Member="DanhGias" ThisKey="UserID" OtherKey="MaKH" Type="DanhGia" />
+      <Association Name="NguoiDung_GioHang" Member="GioHangs" ThisKey="UserID" OtherKey="MaKH" Type="GioHang" />
+      <Association Name="NguoiDung_HoaDon" Member="HoaDons" ThisKey="UserID" OtherKey="MaNV" Type="HoaDon" />
+      <Association Name="NguoiDung_HoaDon1" Member="HoaDons1" ThisKey="UserID" OtherKey="MaKH" Type="HoaDon" />
+    </Type>
+  </Table>
+</Database>

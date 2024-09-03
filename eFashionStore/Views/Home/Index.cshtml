@@ -1,0 +1,210 @@
+﻿@model IEnumerable<eFashionStore.Models.SanPham>
+<div class="hom-slider">
+    <div class="container" style="overflow: hidden;">
+        <div id="sequence">
+            <img src="/Content/store/images/slide_index_1.jpg">
+        </div>
+    </div>
+    <div class="promotion-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="promo-box"><img src="/Content/store/images/banner_index_1.png" alt=""></div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="promo-box"><img src="/Content/store/images/banner_index_2.png" alt=""></div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="promo-box"><img src="/Content/store/images/banner_index_3.png" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="container_fullwidth">
+    <div class="container">
+        <div class="hot-products">
+            <h3 class="title"><strong>Hot</strong> Products</h3>
+            <div class="control"><a id="prev_hot" class="prev" href="#">&lt;</a><a id="next_hot" class="next" href="#">&gt;</a></div>
+            <ul id="hot">
+                <li>
+                    <div class="row">
+                        @for (int i = 0; i <= 3; i++)
+                        {
+                            var item = Model.ElementAtOrDefault(i);
+                            if (item != null)
+                            {
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="products">
+                                        <div class="offer">- @item.GiamGia</div>
+                                        <div class="thumbnail"><a href="@Url.Action("Details", "Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname"><a href="@Url.Action("Details", "Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <h4 class="price">
+                                            @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
+                                            <small class="old-price">
+                                                <s>@item.Gia.ToString("N0")<span>₫</span></s>
+                                            </small>
+                                        </h4>
+                                        <style>
+                                            .old-price {
+                                                font-size: 0.80em;
+                                                color: #999;
+                                            }
+
+                                                .old-price s {
+                                                    text-decoration: line-through;
+                                                }
+                                        </style>
+                                        <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
+                                            <div class="button_group">
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
+                                                <button type="submit" class="button add-cart">Add To Cart</button>
+                                                <button class="button wishlist" type="button">
+                                                    <i class="fa fa-heart-o">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        @for (int i = 4; i <= 7; i++)
+                        {
+                            var item = Model.ElementAtOrDefault(i);
+                            if (item != null)
+                            {
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="products">
+                                        <div class="offer">- @item.GiamGia</div>
+                                        <div class="thumbnail"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <h4 class="price">
+                                            @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
+                                            <small class="old-price">
+                                                <s>@item.Gia.ToString("N0")<span>₫</span></s>
+                                            </small>
+                                        </h4>
+                                        <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
+                                            <div class="button_group">
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
+                                                <button type="submit" class="button add-cart">Add To Cart</button>
+                                                <button class="button wishlist" type="button">
+                                                    <i class="fa fa-heart-o">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="featured-products">
+            <h3 class="title"><strong>Featured </strong> Products</h3>
+            <div class="control"><a id="prev_featured" class="prev" href="#">&lt;</a><a id="next_featured" class="next" href="#">&gt;</a></div>
+            <ul id="featured">
+                <li>
+                    <div class="row">
+                        @for (int i = @Model.Count(); i >= @Model.Count() - 4; i--)
+                        {
+                            var item = Model.ElementAtOrDefault(i);
+                            if (item != null)
+                            {
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="products">
+                                        <div class="thumbnail"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <h4 class="price">
+                                            @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
+                                            <small class="old-price">
+                                                <s>@item.Gia.ToString("N0")<span>₫</span></s>
+                                            </small>
+                                        </h4>
+                                        <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
+                                            <div class="button_group">
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
+                                                <button type="submit" class="button add-cart">Add To Cart</button>
+                                                <button class="button wishlist" type="button">
+                                                    <i class="fa fa-heart-o">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        @for (int i = @Model.Count()-5; i >= @Model.Count()-9; i--)
+                        {
+                            var item = Model.ElementAtOrDefault(i);
+                            if (item != null)
+                            {
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="products">
+                                        <div class="thumbnail"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })"><img src="@item.Hinh" alt="Product Name"></a></div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname">ㅤ</div>
+                                        <div class="productname"><a href="@Url.Action("Details","Product", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <h4 class="price">
+                                            @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
+                                            <small class="old-price">
+                                                <s>@item.Gia.ToString("N0")<span>₫</span></s>
+                                            </small>
+                                        </h4>
+                                        <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
+                                            <div class="button_group">
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
+                                                <button type="submit" class="button add-cart">Add To Cart</button>
+                                                <button class="button wishlist" type="button">
+                                                    <i class="fa fa-heart-o">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
