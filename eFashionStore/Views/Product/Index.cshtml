@@ -1,0 +1,106 @@
+﻿@model eFashionStore.Models.ProductModel
+<div class="wrapper">
+
+    <div class="clearfix">
+    </div>
+    <div class="container_fullwidth">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="category leftbar">
+                        <h3 class="title">
+                            Categories
+                        </h3>
+                        <ul>
+                            @foreach (var item in Model.LoaiSPs)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", new { id = item.MaLoai.Trim() })">@item.TenLoai</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <div class="leftbanner">
+                        <img src="images/banner-small-01.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="products-grid">
+                        <div class="clearfix">
+                        </div>
+                        <div class="row">
+                            <!-- sản phẩm ở đây -->
+                            @foreach (var item in Model.SanPhams)
+                            {
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="products">
+                                        <div class="thumbnail">
+                                            <a href="@Url.Action("Details", new { id = item.MaSP.Trim() })">
+                                                <img src="@item.Hinh" alt="Product Name">
+                                            </a>
+                                        </div>
+                                        <div class="productname">
+                                            ㅤ
+                                        </div>
+                                        <div class="productname">
+                                            ㅤ
+                                        </div>
+                                        <div class="productname"><a href="@Url.Action("Details", new { id = item.MaSP.Trim() })">@item.TenSP</a></div>
+                                        <h4 class="price">
+                                            @Math.Round(item.Gia * (1 - (item.GiamGia / 100))).ToString("N0") đ
+                                            <small class="old-price">
+                                                <s>@item.Gia.ToString("N0")<span>₫</span></s>
+                                            </small>
+                                        </h4>
+                                        <style>
+                                            .old-price {
+                                                font-size: 0.80em;
+                                                color: #999;
+                                            }
+
+                                                .old-price s {
+                                                    text-decoration: line-through;
+                                                }
+                                        </style>
+                                        <form action="@Url.Action("AddToCart", "Cart")" method="post">      
+                                            <input type="hidden" name="id" value="@item.MaSP" />
+                                            <div class="button_group">
+                                                <div class="qty">
+                                                    <input type="number" id="Quantity" name="quantity" value="1" min="1" />
+                                                </div>
+                                                <br />
+                                                <button type="submit" class="button add-cart">Add To Cart</button>
+                                                <button class="button wishlist" type="button">
+                                                    <i class="fa fa-heart-o">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+
+
+
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        @using PagedList
+                        @using PagedList.Mvc
+                        <div class="toolbar">
+                            <div class="pager">
+                                @Html.PagedListPager(Model.SanPhams, pageNumber => Url.Action("Index", new { page = pageNumber }))
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+        </div>
+    </div>
+</div>

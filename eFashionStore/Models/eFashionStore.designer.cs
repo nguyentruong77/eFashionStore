@@ -58,6 +58,7 @@ namespace eFashionStore.Models
     partial void UpdateNguoiDung(NguoiDung instance);
     partial void DeleteNguoiDung(NguoiDung instance);
         #endregion
+
         public eFashionStoreDataContext() :
                 base(global::System.Configuration.ConfigurationManager.ConnectionStrings["eFashionStoreConnectionString"].ConnectionString, mappingSource)
         {

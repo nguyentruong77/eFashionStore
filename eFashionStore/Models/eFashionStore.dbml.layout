@@ -56,70 +56,70 @@
         <elementListCompartment Id="6a89d1a3-3ee7-43ca-abba-0ce0af36b145" absoluteBounds="0.765, 5.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 2.02005126953125); (7.25 : 2.02005126953125); (7.25 : 4.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.02005126953125); (7.25 : 2.02005126953125); (7.25 : 4.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/SanPham/SanPham_ChiTietGioHang" />
       <nodes>
         <classShapeMoniker Id="e2809f9c-a981-453b-a181-3cabd69c6419" />
         <classShapeMoniker Id="53c3ce13-6e18-4717-891e-3b1134af0023" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.68632940429688); (7.16666666666667 : 2.68632940429687 : JumpStart); (7.33333333333333 : 2.68632940429688 : JumpEnd); (10.25 : 2.68632940429688); (10.25 : 7.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.68632940429688); (10.25 : 2.68632940429688); (10.25 : 7.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/SanPham/SanPham_ChiTietHoaDon" />
       <nodes>
         <classShapeMoniker Id="e2809f9c-a981-453b-a181-3cabd69c6419" />
         <classShapeMoniker Id="c95637fa-b921-4849-b2dd-2e57ed1ebe42" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.97199625651042); (6.25 : 4.97199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.97199625651042); (6.25 : 4.97199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/GioHang/GioHang_ChiTietGioHang" />
       <nodes>
         <classShapeMoniker Id="32b9b629-208a-4a23-87d3-35176e353a7d" />
         <classShapeMoniker Id="53c3ce13-6e18-4717-891e-3b1134af0023" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 8.16429768880208); (9.25 : 8.16429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 8.16429768880208); (9.25 : 8.16429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/HoaDon/HoaDon_ChiTietHoaDon" />
       <nodes>
         <classShapeMoniker Id="b42e81b0-a5f4-4821-a5d4-ec5abc4ffeb7" />
         <classShapeMoniker Id="c95637fa-b921-4849-b2dd-2e57ed1ebe42" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 10.2219962565104); (7.5 : 10.2219962565104); (7.5 : 9.60740397135417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 10.2219962565104); (7.5 : 10.2219962565104); (7.5 : 9.60740397135417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/Coupon/Coupon_HoaDon" />
       <nodes>
         <classShapeMoniker Id="6d3c059c-a1c1-4ddf-acf1-bb13b0f70b5d" />
         <classShapeMoniker Id="b42e81b0-a5f4-4821-a5d4-ec5abc4ffeb7" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.70755126953125); (3.5 : 2.70755126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.70755126953125); (3.5 : 2.70755126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/LoaiSP/LoaiSP_SanPham" />
       <nodes>
         <classShapeMoniker Id="cd4d414a-edab-4f0c-ae3f-e6a6461b1569" />
         <classShapeMoniker Id="e2809f9c-a981-453b-a181-3cabd69c6419" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.86140055338542); (3.5 : 6.86140055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.86140055338542); (3.5 : 6.86140055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/NguoiDung/NguoiDung_DanhGia" />
       <nodes>
         <classShapeMoniker Id="90727130-e302-4e32-8ddb-c2c7eddb3597" />
         <classShapeMoniker Id="bdd841c5-144e-4256-a534-ae71cc7971e3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.28449625651042); (3.5 : 5.28449625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.28449625651042); (3.5 : 5.28449625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/NguoiDung/NguoiDung_GioHang" />
       <nodes>
         <classShapeMoniker Id="90727130-e302-4e32-8ddb-c2c7eddb3597" />
         <classShapeMoniker Id="32b9b629-208a-4a23-87d3-35176e353a7d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.06814697265625); (8.40625 : 6.06814697265625); (8.40625 : 6.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.06814697265625); (8.40625 : 6.06814697265625); (8.40625 : 6.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/NguoiDung/NguoiDung_HoaDon" />
       <nodes>
         <classShapeMoniker Id="90727130-e302-4e32-8ddb-c2c7eddb3597" />
         <classShapeMoniker Id="b42e81b0-a5f4-4821-a5d4-ec5abc4ffeb7" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.22157598632812); (8.3749975 : 6.22157598632812); (8.3749975 : 6.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.22157598632812); (8.3749975 : 6.22157598632812); (8.3749975 : 6.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/eFashionStoreDataContext/NguoiDung/NguoiDung_HoaDon1" />
       <nodes>
         <classShapeMoniker Id="90727130-e302-4e32-8ddb-c2c7eddb3597" />
