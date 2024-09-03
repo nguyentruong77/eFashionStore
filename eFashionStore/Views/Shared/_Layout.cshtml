@@ -35,29 +35,26 @@
                                 <div class="col-md-3">
                                     <ul class="usermenu">
                                         @{
-                                            var isAuthenticated = User.Identity.IsAuthenticated;
-                                            var userName = isAuthenticated ? User.Identity.Name : "Guest";
+                                            var isAuthenticated = Session["UserName"] != null;
+                                            var userName = isAuthenticated ? Session["UserName"].ToString() : "Guest";
                                         }
                                         @if (isAuthenticated)
+                                        {
+                                            <li><a href="#" class="log"> @userName</a></li>
+                                            <li>
+                                                <a href="#" class="reg" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                @Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logout-form", style = "display:none;" })
+                                                {
+                                                }
+                                            </li>
+                                        }
+                                        else
                                         {
                                             <li><a href="@Url.Action("Login", "Account")" class="log">Login</a></li>
                                             <li><a href="@Url.Action("Register", "Account")" class="reg">Register</a></li>
                                         }
-                                        else
-                                        {
-                                            <li class="active dropdown">
-                                                <a href="#" class="log" data-toggle="dropdown">@userName</a>
-                                                <div class="dropdown-menu">
-                                                    <ul class="mega-menu-links">
-                                                        <li><a href="#">Account</a></li>
-                                                        <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li><a href="@Url.Action("Register", "Account")" class="reg">Register</a></li>
-
-                                        }
                                     </ul>
+
                                 </div>
                             </div>
                         </div>

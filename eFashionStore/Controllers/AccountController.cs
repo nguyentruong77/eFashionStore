@@ -103,6 +103,10 @@ namespace eFashionStore.Controllers
                 }
                 else
                 {
+                    //save session
+                    Session["UserName"] = user.TenTaiKhoan;
+                    Session["UserId"] = user.UserID;
+
                     FormsAuthentication.SetAuthCookie(user.TenTaiKhoan, true);
 
                     if (Url.IsLocalUrl(returnUrl))
@@ -123,6 +127,15 @@ namespace eFashionStore.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
 
         [HttpGet]
         public ActionResult ForgotPassword()
