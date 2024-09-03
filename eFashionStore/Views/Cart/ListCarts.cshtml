@@ -115,18 +115,40 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="shippingbox">
-                                        <div class="summary-item" style="font-size:17px"><span class="text" >Quantity: </span><span class="price">@ViewBag.CountProduct</span></div>
+                                        <div class="summary-item" style="font-size:17px"><span class="text">Quantity: </span><span class="price">@ViewBag.CountProduct</span></div>
                                         <div class="summary-item" style="font-size:17px"><span class="text" style="font-size:17px">Total price: </span><span class="price">@ViewBag.SubTotal.ToString("N0")<span>₫</span></span></div>
                                         <div class="summary-item" style="font-size:17px"><span class="text" style="font-size:17px">Discount: </span><span class="price">@ViewBag.Discount.ToString("N0")<span>₫</span></span></div>
                                         <div class="summary-item" style="font-size:17px"><span class="text" style="font-size:17px">Transport: </span><span class="price">0<span>₫</span></span></div>
                                         <br />
-                                        <div class="summary-item" style="font-size:18px"><span class="text" >Total amount: </span><span class="price" style="color:orange">@ViewBag.Total.ToString("N0")<span>₫</span></span></div>
+                                        <div class="summary-item" style="font-size:18px"><span class="text">Total amount: </span><span class="price" style="color:orange">@ViewBag.Total.ToString("N0")<span>₫</span></span></div>
                                         <br /> <br />
-                                        <a href="@Url.Action("OrderConfirmation", "Cart")" class="btn btn-primary">Process to checkout</a>
+
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="shippingbox">
+
+                                        <div>
+                                            <label for="Ten" style="font-size:15px">Name: <span>@ViewBag.HoTen</span></label>
+                                        </div>
+                                        <div>
+                                            <label for="SDT" style="font-size:15px">Phone Number: <span>@ViewBag.SDT</span></label>
+                                        </div>
+                                        <div>
+                                            <label for="Email" style="font-size:15px">Email: <span>@ViewBag.Email</span></label>
+                                        </div>
+                                        <div>
+                                            <label for="DiaChi" style="font-size:15px">Address: <span>@ViewBag.DiaChi</span></label>
+                                        </div>
 
                                     </div>
                                 </div>
-                                
+                                <button class=" pull-right">
+                                    <a href="@Url.Action("Order", "Cart")">Order Confirmation</a>
+                                </button>
                             </div>
                         }
                         else
