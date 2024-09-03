@@ -45,29 +45,37 @@ namespace eFashionStore.Controllers
         }
 
 
+
         public ActionResult ListCarts()
         {
-            LoadCartFromDatabase();
+            var userId = GetUserId();
 
-            var sessionCart = Session["CartModel"] as string;
-            List<CartModel> carts = string.IsNullOrEmpty(sessionCart)
-                ? new List<CartModel>()
-                : JsonConvert.DeserializeObject<List<CartModel>>(sessionCart);
-
-            ViewBag.CountProduct = carts.Sum(s => s.SoLuong);
-            decimal subTotal = carts.Sum(s => s.SoLuong * s.Gia);
-            ViewBag.SubTotal = subTotal;
-
-            decimal discount = 0;
-            foreach (var cart in carts)
+            if (userId != null)
             {
-                discount += (cart.GiamGia / 100.0m) * (cart.Gia * cart.SoLuong);
+                var cartItems = _context.GioHangs
+                    .Where(g => g.MaKH == userId)
+                    .SelectMany(g => _context.ChiTietGioHangs
+                        .Where(c => c.MaGH == g.MaGH)
+                        .Join(_context.SanPhams, c => c.MaSP, s => s.MaSP, (c, s) => new CartModel
+                        {
+                            MaSp = s.MaSP,
+                            TenSp = s.TenSP,
+                            Gia = s.Gia,
+                            SoLuong = c.SoLuong ?? 0,
+                            Hinh = s.Hinh,
+                            GiamGia = s.GiamGia
+                        }))
+                    .ToList();
+
+                ViewBag.CountProduct = cartItems.Sum(c => c.SoLuong);
+                ViewBag.SubTotal = cartItems.Sum(c => c.Gia * c.SoLuong);
+                ViewBag.Discount = cartItems.Sum(c => (c.Gia * (1 - (c.GiamGia / 100))) * c.SoLuong) - ViewBag.SubTotal;
+                ViewBag.Total = ViewBag.SubTotal - ViewBag.Discount;
+
+                return View(cartItems);
             }
 
-            ViewBag.Discount = discount;
-            ViewBag.Total = subTotal - discount;
-
-            return View(carts);
+            return View(new List<CartModel>());
         }
 
 
@@ -148,64 +156,65 @@ namespace eFashionStore.Controllers
 
             if (userId != null)
             {
+                // Load database
                 var cartItemsFromDb = (from gioHang in _context.GioHangs
-                                             join chiTietGioHang in _context.ChiTietGioHangs on gioHang.MaGH equals chiTietGioHang.MaGH
-                                             join sanPham in _context.SanPhams on chiTietGioHang.MaSP equals sanPham.MaSP
-                                             where gioHang.MaKH == userId
-                                             select new CartModel
-                                             {
-                                                 MaSp = sanPham.MaSP,
-                                                 TenSp = sanPham.TenSP,
-                                                 Gia = sanPham.Gia,
-                                                 SoLuong = chiTietGioHang.SoLuong ?? 0,
-                                                 Hinh = sanPham.Hinh,
-                                                 GiamGia = sanPham.GiamGia
-                                             }).ToList();
+                                       join chiTietGioHang in _context.ChiTietGioHangs on gioHang.MaGH equals chiTietGioHang.MaGH
+                                       join sanPham in _context.SanPhams on chiTietGioHang.MaSP equals sanPham.MaSP
+                                       where gioHang.MaKH == userId
+                                       select new CartModel
+                                       {
+                                           MaSp = sanPham.MaSP,
+                                           TenSp = sanPham.TenSP,
+                                           Gia = sanPham.Gia,
+                                           SoLuong = chiTietGioHang.SoLuong ?? 0,
+                                           Hinh = sanPham.Hinh,
+                                           GiamGia = sanPham.GiamGia
+                                       }).ToList();
 
-                var cartItemsFromSession = HttpContext.Session["CartModel"] as List<CartModel> ?? new List<CartModel>();
-                // Nối session và giỏ
+                // Load session
+                var cartItemsFromSession = GetListCarts();
+
+                // Shuffer session, db
                 foreach (var sessionItem in cartItemsFromSession)
                 {
                     var dbItem = cartItemsFromDb.FirstOrDefault(c => c.MaSp == sessionItem.MaSp);
                     if (dbItem != null)
                     {
-                        dbItem.SoLuong += (sessionItem.SoLuong - 1);
+                        dbItem.SoLuong += sessionItem.SoLuong;
                     }
                     else
                     {
                         cartItemsFromDb.Add(sessionItem);
                     }
                 }
-                HttpContext.Session["CartModel"] = cartItemsFromDb;
+                HttpContext.Session["CartModel"] = JsonConvert.SerializeObject(cartItemsFromDb);
             }
         }
 
+
+        [HttpGet]
         public ActionResult Delete(string id)
         {
-            var carts = GetListCarts();
-            var productToRemove = carts.FirstOrDefault(p => p.MaSp == id);
-            if (productToRemove != null)
-            {
-                carts.Remove(productToRemove);
-                HttpContext.Session["CartModel"] = carts;
+            var userId = GetUserId();
 
-                var userId = GetUserId();
-                if (userId != null)
+            if (userId != null)
+            {
+                var cart = _context.GioHangs
+                    .FirstOrDefault(g => g.MaKH == userId);
+
+                if (cart != null)
                 {
-                    var gioHang = _context.GioHangs.FirstOrDefault(g => g.MaKH == userId);
-                    if (gioHang != null)
+                    var cartItem = _context.ChiTietGioHangs
+                        .FirstOrDefault(c => c.MaGH == cart.MaGH && c.MaSP == id);
+
+                    if (cartItem != null)
                     {
-                        var chiTietGioHang = _context.ChiTietGioHangs.FirstOrDefault(c => c.MaGH == gioHang.MaGH && c.MaSP == id);
-                        if (chiTietGioHang != null)
-                        {
-                            _context.ChiTietGioHangs.DeleteOnSubmit(chiTietGioHang);
-                            _context.SubmitChanges();
-                        }
+                        _context.ChiTietGioHangs.DeleteOnSubmit(cartItem);
+                        _context.SubmitChanges();
                     }
                 }
             }
-
-            return RedirectToAction("ListCarts");
-        } 
+            return RedirectToAction("ListCarts", "Cart");
+        }
     }
 }
