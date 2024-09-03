@@ -107,7 +107,7 @@ namespace eFashionStore.Controllers
                     Session["UserName"] = user.TenTaiKhoan;
                     Session["UserId"] = user.UserID;
 
-                    FormsAuthentication.SetAuthCookie(user.TenTaiKhoan, true);
+                    FormsAuthentication.SetAuthCookie(user.TenTaiKhoan, false);
 
                     if (Url.IsLocalUrl(returnUrl))
                     {

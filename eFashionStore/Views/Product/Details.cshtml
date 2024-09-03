@@ -68,14 +68,29 @@
                     </div>
                     <div class="clearfix">
                     </div>
+                    <div class="tab-box">
+                        <h4>DESCRIPTION</h4>
+                        <div class="tab-content-wrap">
+                            <div class="tab-content">
+                                @Model.ItemDetails.MoTa
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="clearfix">
+                    </div>   
+                    <br />
                     @{
                         var isAuthenticated = User.Identity.IsAuthenticated;
                     }
 
                     @if (isAuthenticated)
                     {
-                        @(Html.BeginForm("SubmitReview", "Product", FormMethod.Post))
+                        using (Html.BeginForm("SubmitReview", "Product", FormMethod.Post))
                         {
                             <div class="form-group">
                                 <label for="SoSao">Rate:</label>
@@ -97,32 +112,19 @@
                     }
                     else
                     {
-                        <p>Hey! <a style="color:orange" href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Details", "Product", new { id = Model.ItemDetails.MaSP }) })">Login</a> to review the product.</p>
+                        <p>Hey! <a style="color:orange" href="@Url.Action("Login", "Account", new { ReturnUrl = Url.Action("Details", "Product", new { id = Model.ItemDetails.MaSP.Trim() }) })">Login</a> to review the product.</p>
                     }
 
                     <br /> <br />
                     <h4>REVIEWS</h4>
+                    <br /><br />
                     @foreach (var review in Model.Reviews)
                     {
                         <div>
-                            <p><strong>@review.HoTen</strong> - @review.SoSao sao</p>
+                            <p><span style="font-size:15px">@review.HoTen</span> - @review.SoSao sao</p>
                             <p>@review.BinhLuan</p>
                         </div>
                     }
-                    <div class="clearfix">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="clearfix">
-                    </div>
-                    <div class="tab-box">
-                        <h4>DESCRIPTION</h4>
-                        <div class="tab-content-wrap">
-                            <div class="tab-content">
-                                @Model.ItemDetails.MoTa
-                            </div>
-                        </div>
-                    </div>
                     <div class="clearfix">
                     </div>
                 </div>
