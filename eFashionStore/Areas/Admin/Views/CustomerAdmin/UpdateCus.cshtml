@@ -1,0 +1,72 @@
+﻿@model eFashionStore.Models.NguoiDung
+@{
+    ViewBag.Title = "UpdateProduce";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Edit customer</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","HomeAdmin")">Home</a></li>
+                <li class="breadcrumb-item active">Edit customer</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section dashboard" style="background-color: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+        @using (Html.BeginForm("UpdateCus", "CustomerAdmin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.UserID)
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MatKhau)
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IsAdmin)
+
+            <div class="form-group">
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control", @id = "floatingInputName", placeholder = "Enter full name", @required = "required" })
+                    @Html.Label("Full name: ", new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.HoTen, "Please enter full name!", new { @class = "invalid-feedback" })
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "floatingInputImage", @placeholder = "Enter email", @required = "required", @type = "email", @pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$" })
+                @Html.Label("Email:", new { @class = "form-label" })
+                @Html.ValidationMessageFor(model => model.Email, "Please enter email!", new { @class = "invalid-feedback" })
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control", @id = "floatingInputImage", @placeholder = "Enter address", @required = "required" })
+                @Html.Label("Address:", new { @class = "form-label" })
+                @Html.ValidationMessageFor(model => model.DiaChi, "Please enter address!", new { @class = "invalid-feedback" })
+            </div>
+
+            <div class="form-floating mb-3">
+                @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @id = "floatingStockInput", @type = "text", @placeholder = "Enter Phone number", @required = "required", @maxlength = "10", @minlength = "10", @pattern = @"\d{10}", @oninput = "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" })
+                @Html.Label("Phone number:", new { @class = "form-label" })
+                @Html.ValidationMessageFor(model => model.SDT, "Please enter a valid 10-digit phone number!", new { @class = "invalid-feedback" })
+            </div>
+
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary" type="submit">Save and change</button>
+
+            </div>
+        </div>
+        }
+
+        <a href="@Url.Action("ListCus","CustomerAdmin")" style="text-decoration:none;font-size:15px;color:black;margin-left:20px;">
+            <i class="fa-solid fa-backward"></i>  Back to list
+        </a>
+    </section>
+</main>
+
+
