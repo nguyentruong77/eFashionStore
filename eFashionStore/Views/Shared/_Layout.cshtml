@@ -34,8 +34,29 @@
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="usermenu">
-                                        <li><a href="checkout.html" class="log">Login</a></li>
-                                        <li><a href="checkout2.html" class="reg">Register</a></li>
+                                        @{
+                                            var isAuthenticated = User.Identity.IsAuthenticated;
+                                            var userName = isAuthenticated ? User.Identity.Name : "Guest";
+                                        }
+                                        @if (isAuthenticated)
+                                        {
+                                            <li><a href="@Url.Action("Login", "Account")" class="log">Login</a></li>
+                                            <li><a href="@Url.Action("Register", "Account")" class="reg">Register</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="active dropdown">
+                                                <a href="#" class="log" data-toggle="dropdown">@userName</a>
+                                                <div class="dropdown-menu">
+                                                    <ul class="mega-menu-links">
+                                                        <li><a href="#">Account</a></li>
+                                                        <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li><a href="@Url.Action("Register", "Account")" class="reg">Register</a></li>
+
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -47,7 +68,7 @@
                                     <form action="@Url.Action("Search", "Product")" method="get"><input class="search-submit" type="submit" value=""><input class="search-input" placeholder="Enter your search term..." type="text" value="" name="key"></form>
                                 </li>
                                 <li class="option-cart">
-                                    <a href="@Url.Action("index", "Cart")" class="cart-icon">cart <span class="cart_no"></span></a>
+                                    <a href="@Url.Action("ListCarts", "Cart")" class="cart-icon">cart <span class="cart_no"></span></a>
                                 </li>
                             </ul>
                             <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
