@@ -20,14 +20,7 @@
     <section class="section dashboard" style="background-color: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
         <header id="header" class="header d-flex align-items-center" style="border-radius:20px;margin-bottom:20px;">
             <div class="search-bar" style="width:98%">
-                @using (Html.BeginForm("FindAdminPR", "FindAdmin", FormMethod.Post))
-                {
-                    <div class="search-form d-flex align-items-center">
-                        @Html.TextBox("FindX", null, new { placeholder = "Search", title = "Enter search keyword", style = "border-radius:20px;padding:10px" })
-                        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    </div>
-                }
-            </div><!-- End Search Bar -->
+            </div>
         </header>
         <table class="table">
             <tr>
