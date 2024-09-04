@@ -97,22 +97,34 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="shippingbox">
-                                        <h5>
-                                            Discount Codes
-                                        </h5>
-                                        <form>
+                                        <h5>Discount Codes</h5>
+                                        @if (!string.IsNullOrEmpty(ViewBag.Message))
+                                        {
+                                            <div class="alert alert-danger">
+                                                @ViewBag.Message
+                                            </div>
+                                        }
+                                        <form asp-action="ListCarts" method="post">
                                             <label>
                                                 Enter your coupon code if you have one
                                             </label>
-                                            <input type="text" name="">
-                                            <div class="clearfix">
-                                            </div>
-                                            <button>
+                                            <input type="text" name="couponCode" class="form-control" />
+                                            <div class="clearfix"></div>
+                                            <button type="submit" class="btn btn-primary">
                                                 Use coupon
                                             </button>
                                         </form>
+                                        @if (!string.IsNullOrEmpty(ViewBag.Coupon))
+                                        {
+                                            <div>
+                                                <br />
+                                                <p>Coupon Code: @ViewBag.Coupon</p>
+                                                <p>Discount Value: @ViewBag.GiamGiaCoupon %</p>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4 col-sm-6">
                                     <div class="shippingbox">
                                         <div class="summary-item" style="font-size:17px"><span class="text">Quantity: </span><span class="price">@ViewBag.CountProduct</span></div>

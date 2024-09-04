@@ -18,7 +18,7 @@
                         <br /> 
                         <h5>Thank you for shopping at our store! Please confirm to place an order.</h5>
                         <br />
-                        <form method="post" action="@Url.Action("Order")">
+                        <form method="post" action="@Url.Action("OrderConfirmation")">
                             @Html.AntiForgeryToken()
                             <button type="submit" class="btn btn-primary">Order</button>
                         </form>

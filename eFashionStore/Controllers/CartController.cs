@@ -44,7 +44,6 @@ namespace eFashionStore.Controllers
             return carts;
         }
 
-        [Authorize]
         public ActionResult ListCarts()
         {
             var userId = GetUserId();
@@ -83,12 +82,88 @@ namespace eFashionStore.Controllers
                 ViewBag.Discount = discount;
                 ViewBag.Total = ViewBag.SubTotal - ViewBag.Discount;
 
+                ViewBag.Coupon = TempData["Coupon"];
+                ViewBag.GiamGiaCoupon = TempData["GiamGiaCoupon"];
+                ViewBag.Message = TempData["Message"];
+
                 return View(cartItems);
             }
 
             return View(new List<CartModel>());
         }
 
+        
+        [HttpPost]
+        public ActionResult ListCarts(string couponCode)
+        {
+            decimal discountCoupon = 0;
+            if (!string.IsNullOrEmpty(couponCode))
+            {
+                var coupon = _context.Coupons.FirstOrDefault(u => u.MaCoupon == couponCode);
+                if (coupon != null)
+                {
+                    ViewBag.Coupon = coupon.MaCoupon;
+                    ViewBag.GiamGiaCoupon = coupon.GiamGia;
+                    ViewBag.Message = "";
+                    discountCoupon = coupon.GiamGia;
+                    //save session
+                    Session["discountCoupon"] = coupon.GiamGia;
+                }
+                else
+                {
+                    ViewBag.Coupon = "";
+                    ViewBag.GiamGiaCoupon = 0;
+                    ViewBag.Message = "Invalid coupon code.";
+                }
+            }
+            else
+            {
+                ViewBag.Coupon = "";
+                ViewBag.GiamGiaCoupon = 0;
+                ViewBag.Message = "Please enter a coupon code.";
+            }
+
+            var userId = GetUserId();
+            var nguoiDung = _context.NguoiDungs.FirstOrDefault(u => u.UserID == userId);
+            ViewBag.HoTen = nguoiDung != null ? nguoiDung.HoTen : "";
+            ViewBag.DiaChi = nguoiDung != null ? nguoiDung.DiaChi : "";
+            ViewBag.SDT = nguoiDung != null ? nguoiDung.SDT : "";
+            ViewBag.Email = nguoiDung != null ? nguoiDung.Email : "";
+            ViewBag.DiaChi = nguoiDung != null ? nguoiDung.DiaChi : "";
+
+            if (userId != null)
+            {
+                var cartItems = _context.GioHangs
+                    .Where(g => g.MaKH == userId)
+                    .SelectMany(g => _context.ChiTietGioHangs
+                        .Where(c => c.MaGH == g.MaGH)
+                        .Join(_context.SanPhams, c => c.MaSP, s => s.MaSP, (c, s) => new CartModel
+                        {
+                            MaSp = s.MaSP,
+                            TenSp = s.TenSP,
+                            Gia = s.Gia,
+                            SoLuong = c.SoLuong ?? 0,
+                            Hinh = s.Hinh,
+                            GiamGia = s.GiamGia
+                        }))
+                    .ToList();
+
+                ViewBag.CountProduct = cartItems.Sum(c => c.SoLuong);
+                ViewBag.SubTotal = cartItems.Sum(c => c.Gia * c.SoLuong);
+                decimal discount = 0;
+                foreach (var cart in cartItems)
+                {
+                    discount += (cart.GiamGia / 100.0m) * (cart.Gia * cart.SoLuong);
+                }
+
+                ViewBag.Discount = discount;
+                ViewBag.Total = (ViewBag.SubTotal - ViewBag.Discount) * (1 -(discountCoupon / 100));
+
+                return View("ListCarts", cartItems);
+            }
+
+            return View("ListCarts", new List<CartModel>());
+        }
 
         public ActionResult AddToCart(string id, int quantity)
         {
@@ -241,7 +316,7 @@ namespace eFashionStore.Controllers
         }
 
         
-        public ActionResult Order()
+        public ActionResult OrderConfirmation()
         {
             return View();
         }
@@ -264,9 +339,15 @@ namespace eFashionStore.Controllers
                 return RedirectToAction("ListCarts");
             }
 
+            decimal discountCoupon = 0;
+            if (Session != null && Session["discountCoupon"] is int discountCP)
+            {
+                discountCoupon = discountCP;
+            }
+
             decimal subTotal = carts.Sum(s => s.SoLuong * s.Gia);
             decimal discount = carts.Sum(s => (s.GiamGia / 100.0m) * (s.Gia * s.SoLuong));
-            decimal total = subTotal - discount;
+            decimal total = (subTotal - discount) * (1 - (discountCoupon / 100));
 
             var khachHang = _context.NguoiDungs.FirstOrDefault(u => u.UserID == userId);
             if (khachHang == null)
@@ -296,7 +377,7 @@ namespace eFashionStore.Controllers
                     MaHD = order.MaHD,
                     MaSP = item.MaSp,
                     SoLuongDatHang = item.SoLuong,
-                    DonGia = item.Gia * (1 - (item.GiamGia / 100))
+                    DonGia = (item.Gia * (1 - (item.GiamGia / 100))) * (1 - (discountCoupon / 100))
                 };
                 _context.ChiTietHoaDons.InsertOnSubmit(orderDetail);
 
