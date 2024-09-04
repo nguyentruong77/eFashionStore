@@ -16,5 +16,10 @@ namespace eFashionStore.Controllers
             List<SanPham> ds = da.SanPhams.OrderByDescending(p => p.MaSP).ToList();
             return View(ds);
         }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

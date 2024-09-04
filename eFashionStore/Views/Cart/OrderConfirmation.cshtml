@@ -1,0 +1,48 @@
+﻿@model IEnumerable<eFashionStore.Models.CartModel>
+
+<div class="wrapper">
+    <div class="container_fullwidth">
+        <div class="container shopping-cart">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                    </div>
+                    <div>
+                        <h4>ㅤ</h4>
+                        <h4>ㅤ</h4>
+                        <h4>ㅤ</h4>
+         
+
+                        
+                        <h3>Order Confirmation</h3>
+                        <br /> 
+                        <h5>Thank you for shopping at our store! Please confirm to place an order.</h5>
+                        <br />
+                        <form method="post" action="@Url.Action("OrderConfirmation")">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-primary">Order</button>
+                        </form>
+                    </div>
+                
+                            
+
+
+                        
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            <h4>ㅤ</h4>
+            
+                               
+
+            </div>
+            <div class="clearfix">
+            </div>
+        </div>
+    </div>
+</div>
+
