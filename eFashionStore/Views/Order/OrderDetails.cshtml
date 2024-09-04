@@ -1,0 +1,56 @@
+﻿@model List<eFashionStore.Models.OrderModel>
+
+
+<div class="wrapper">
+    <div class="container_fullwidth">
+        <div class="container shopping-cart">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                    </div>
+                    <div class="block-heading">
+                        <h2 class="text-info">Order Details</h2>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product Code</th>
+                                <th>Product Name</th>
+                                <th>Quantity Ordered</th>
+                                <th>Unit Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaSp</td>
+                                    <td>@item.TenSp</td>
+                                    <td>@item.SoLuongDatHang</td>
+                                    <td>@(item.DonGia.HasValue ? item.DonGia.Value.ToString("N0") + " ₫" : "-")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+
+
+
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+
+
+
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>

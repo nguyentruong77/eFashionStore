@@ -82,7 +82,7 @@
                                     <tr>
                                         <td colspan="6">
                                             <button class="pull-left">
-                                                <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
+                                                <a href="@Url.Action("Index", "Product")">Continue Shopping</a>
                                             </button>
                                             <button class=" pull-right">
                                                 <a href="@Url.Action("ListCarts", "Cart")">Update Shopping Cart</a>
@@ -97,22 +97,34 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="shippingbox">
-                                        <h5>
-                                            Discount Codes
-                                        </h5>
-                                        <form>
+                                        <h5>Discount Codes</h5>
+                                        @if (!string.IsNullOrEmpty(ViewBag.Message))
+                                        {
+                                            <div class="alert alert-danger">
+                                                @ViewBag.Message
+                                            </div>
+                                        }
+                                        <form asp-action="ListCarts" method="post">
                                             <label>
                                                 Enter your coupon code if you have one
                                             </label>
-                                            <input type="text" name="">
-                                            <div class="clearfix">
-                                            </div>
-                                            <button>
+                                            <input type="text" name="couponCode" class="form-control" />
+                                            <div class="clearfix"></div>
+                                            <button type="submit" class="btn btn-primary">
                                                 Use coupon
                                             </button>
                                         </form>
+                                        @if (!string.IsNullOrEmpty(ViewBag.Coupon))
+                                        {
+                                            <div>
+                                                <br />
+                                                <p>Coupon Code: @ViewBag.Coupon</p>
+                                                <p>Discount Value: @ViewBag.GiamGiaCoupon %</p>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4 col-sm-6">
                                     <div class="shippingbox">
                                         <div class="summary-item" style="font-size:17px"><span class="text">Quantity: </span><span class="price">@ViewBag.CountProduct</span></div>
@@ -147,7 +159,7 @@
                                     </div>
                                 </div>
                                 <button class=" pull-right">
-                                    <a href="@Url.Action("Order", "Cart")">Order Confirmation</a>
+                                    <a href="@Url.Action("OrderConfirmation", "Cart")">Order Confirmation</a>
                                 </button>
                             </div>
                         }
@@ -166,7 +178,7 @@
                                 <tr>
                                     <td colspan="6">
                                         <button class="pull-left">
-                                            <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
+                                            <a href="@Url.Action("Product", "Home")">Continue Shopping</a>
                                         </button>
                                         <button class=" pull-right">
                                             <a href="@Url.Action("ListCarts", "Cart")">Update Shopping Cart</a>
@@ -193,7 +205,7 @@
                             <tr>
                                 <td colspan="6">
                                     <button class="pull-left">
-                                        <a href="@Url.Action("Index", "Home")">Continue Shopping</a>
+                                        <a href="@Url.Action("Product", "Home")">Continue Shopping</a>
                                     </button>
                                     <button class=" pull-right">
                                         <a href="@Url.Action("ListCarts", "Cart")">Update Shopping Cart</a>
