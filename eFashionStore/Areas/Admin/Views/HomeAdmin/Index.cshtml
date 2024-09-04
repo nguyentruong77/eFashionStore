@@ -1,0 +1,126 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<eFashionStore.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Product List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","HomeAdmin")">Home</a></li>
+                <li class="breadcrumb-item active">Product list</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section dashboard" style="background-color: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+        <header id="header" class="header d-flex align-items-center" style="border-radius:20px;margin-bottom:20px;">
+            <div class="search-bar" style="width:98%">
+                @using (Html.BeginForm("FindAdminPR", "FindAdmin", FormMethod.Post))
+                {
+                    <div class="search-form d-flex align-items-center">
+                        @Html.TextBox("FindX", null, new { placeholder = "Search", title = "Enter search keyword", style = "border-radius:20px;padding:10px" })
+                        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                    </div>
+                }
+            </div><!-- End Search Bar -->
+        </header>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Product")
+                </th>
+                <th>
+                    @Html.DisplayName("Image")
+                </th>
+                <th>
+                    @Html.DisplayName("Price")
+                </th>
+                <th>
+                    @Html.DisplayName("Inventory")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+                <th>
+                    @Html.DisplayName("Discount")
+                </th>
+                <th>
+                    @Html.DisplayName("Product type")
+                </th>
+                <th>Other</th>
+                <th>...</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width:120px;">
+                        @Html.DisplayFor(modelItem => item.TenSP)
+                    </td>
+                    <td>
+                        <img style="width:50px; height:50px" src="@Html.DisplayFor(modelItem => item.Hinh)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TonKho)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiamGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "UpdatePR", "ProductAdmin", new { id = item.MaSP }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detail", "DetailPRAdmin", "ProductAdmin", new { id = item.MaSP }, null)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @if (Model.PageCount > 1)
+                {
+                    <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">First</a>
+                    </li>
+
+                    <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Index","HomeAdmin",  new { page = Model.PageNumber - 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Previous</a>
+                    </li>
+                    for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index","HomeAdmin",  new { page = i })">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = Model.PageNumber + 1 })">Next</a>
+                    </li>
+
+                    <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Index", "HomeAdmin", new { page = Model.PageCount })">End</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <p>
+            <button class="btn btn-primary" onclick="window.location.href='@Url.Action("CreatePR","ProductAdmin")'">Create new product</button>
+        </p>
+    </section>
+</main>
+
