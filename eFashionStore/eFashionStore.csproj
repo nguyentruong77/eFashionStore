@@ -628,6 +628,9 @@
     <Content Include="Areas\assets\vendor\tinymce\README.md" />
     <Content Include="Areas\Admin\Views\CustomerAdmin\ListCus.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerAdmin\UpdateCus.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\ListOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\DelOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\DetailOrder.cshtml" />
     <None Include="Models\eFashionStore.dbml.layout">
       <DependentUpon>eFashionStore.dbml</DependentUpon>
     </None>

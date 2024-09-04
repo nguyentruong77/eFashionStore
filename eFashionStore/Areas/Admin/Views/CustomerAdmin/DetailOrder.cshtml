@@ -1,0 +1,45 @@
+﻿@model IEnumerable<eFashionStore.Models.ChiTietHoaDon>
+
+@{
+    ViewBag.Title = "DetailOrder";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>View detail order</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","HomeAdmin")">Home</a></li>
+                <li class="breadcrumb-item active">View detail order</li>
+            </ol>
+        </nav>
+    </div>
+
+    <h1>Detail Order</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product code</th>
+                <th>Product Name</th>
+                <th>Order Quantity</th>
+                <th>Unit price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaSP</td>
+                    <td>@item.SanPham.TenSP</td>
+                    <td>@item.SoLuongDatHang</td>
+                    <td>@(item.DonGia.HasValue ? item.DonGia.Value.ToString("N0") + " ₫" : "-")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        @Html.ActionLink("Back to List", "ListOrder")
+    </div>
+</main>
