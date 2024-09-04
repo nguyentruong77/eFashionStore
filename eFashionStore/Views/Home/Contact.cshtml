@@ -1,0 +1,121 @@
+﻿<div class="wrapper">
+    <div class="container_fullwidth">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="title contact-title">
+                        Contact Us
+                    </h5>
+                    <div class="clearfix">
+                    </div>
+                    <div class="map">
+                        <iframe width="600" height="350" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4534676268927!2d106.68795057407011!3d10.77653905919366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3afd7416ff%3A0xe4bbdc83b3fb49f8!2zOTcgVsO1IFbEg24gVOG6p24sIFBoxrDhu51uZyA2LCBRdeG6rW4gMywgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1716964633504!5m2!1sen!2s">
+                        </iframe>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="contact-infoormation">
+                                <h5>
+                                    Contact Info
+                                </h5>
+                                <p>
+                                    FLATSHOP offers a stylish collection of fashion apparel, bringing the latest trends right to your wardrobe.
+                                </p>
+                                <ul>
+                                    <li>
+                                        <span class="icon">
+                                            <img src="/Content/store/images/message.png" alt="">
+                                        </span>
+                                        <p>
+                                            flatshop181@gmail.com
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <span class="icon">
+                                            <img src="/Content/store/images/phone.png" alt="">
+                                        </span>
+                                        <p>
+                                            099 1900 1900
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <span class="icon">
+                                            <img src="/Content/store/images/address.png" alt="">
+                                        </span>
+                                        <p>
+                                            Lam Van Ben, District 7
+                                            <br>
+                                            Ho Chi Minh, Viet Nam
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="ContactForm">
+                                <h5>
+                                    Contact Form
+                                </h5>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>
+                                                Your Name
+                                                <strong class="red">
+                                                    *
+                                                </strong>
+                                            </label>
+                                            <input class="inputfild" type="text" name="name" id="name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>
+                                                Your Email
+                                                <strong class="red">
+                                                    *
+                                                </strong>
+                                            </label>
+                                            <input class="inputfild" type="email" name="email" id="email">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>
+                                                Your Message
+                                                <strong class="red">
+                                                    *
+                                                </strong>
+                                            </label>
+                                            <textarea class="inputfild" rows="8" name="message" id="message"></textarea>
+                                        </div>
+                                    </div>
+                                    <button><a href="#" class="pull-right" onclick="sendEmail()">Send Message</a></button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+
+                        <script>
+    function sendEmail() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+
+        var mailto_link = 'mailto:flatshop181@gmail.com?subject=Contact Form Message&body='
+                        + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message);
+
+        window.location.href = mailto_link;
+    }
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+    </div>
+</div>

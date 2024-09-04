@@ -199,7 +199,6 @@
     <Content Include="Content\store\js\jquery.flexslider.js" />
     <Content Include="Content\store\js\jquery.sequence-min.js" />
     <Content Include="Content\store\js\script.min.js" />
-    <Content Include="Content\store\login.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -207,6 +206,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="MailService\MailSettings.cs" />
@@ -257,7 +257,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Cart\Order.cshtml" />
+    <Content Include="Views\Cart\OrderConfirmation.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Order\OrderDetails.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

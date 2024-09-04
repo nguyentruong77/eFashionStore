@@ -44,7 +44,7 @@ namespace eFashionStore.Controllers
             return carts;
         }
 
-        
+        [Authorize]
         public ActionResult ListCarts()
         {
             var userId = GetUserId();
@@ -248,7 +248,7 @@ namespace eFashionStore.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Order(string paymentMethod)
+        public ActionResult OrderConfirmation(string paymentMethod)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -296,7 +296,7 @@ namespace eFashionStore.Controllers
                     MaHD = order.MaHD,
                     MaSP = item.MaSp,
                     SoLuongDatHang = item.SoLuong,
-                    DonGia = item.Gia
+                    DonGia = item.Gia * (1 - (item.GiamGia / 100))
                 };
                 _context.ChiTietHoaDons.InsertOnSubmit(orderDetail);
 

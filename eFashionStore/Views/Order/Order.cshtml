@@ -1,0 +1,79 @@
+﻿@model List<eFashionStore.Models.OrderModel>
+
+
+<div class="wrapper">
+    <div class="container_fullwidth">
+        <div class="container shopping-cart">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="clearfix">
+                    </div>
+                    <div class="block-heading">
+                        <h2 class="text-info">Order</h2>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Total Value</th>
+                                <th>Shipping Address</th>
+                                <th>Payment Status</th>
+                                <th>Order Status</th>
+                                <th>Delivery Date</th>
+                                <th>Order Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaHd</td>
+                                    <td>@item.NgayDatHang</td>
+                                    <td>@(item.TongGiaTri.HasValue ? item.TongGiaTri.Value.ToString("N0") + " ₫" : "-")</td>
+                                    <td>@item.DiaChiGiaoHang</td>
+                                    <td>@(item.TrangThaiThanhToan.HasValue ? (item.TrangThaiThanhToan.Value ? "Paid" : "Unpaid") : "-")</td>
+                                    <td>@(item.TrangThaiDonHang.HasValue ? GetOrderStatus(item.TrangThaiDonHang.Value) : "-")</td>
+                                    <td>@(item.NgayNhanHang.HasValue ? item.NgayNhanHang.Value.ToString("dd/MM/yyyy") : "-")</td>
+                                    <td>
+                                        <a href="@Url.Action("OrderDetails", "Order", new { maHd = item.MaHd })">View</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @functions {
+                        string GetOrderStatus(int status)
+                        {
+                            switch (status)
+                            {
+                                case 0: return "Processing";
+                                case 1: return "Shipping";
+                                case 2: return "Delivered Successfully";
+                                default: return "Unknown";
+                            }
+                        }
+                    }
+
+
+
+
+
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+                    <h4>ㅤ</h4>
+
+
+
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>

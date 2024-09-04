@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebsiteBanDienThoai23.Web.Models
+namespace eFashionStore.Models
 {
     public class OrderModel
     {
