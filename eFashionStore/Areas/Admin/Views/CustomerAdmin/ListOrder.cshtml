@@ -1,0 +1,149 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<eFashionStore.Models.HoaDon>
+
+@{
+    ViewBag.Title = "UserAccount";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Order List</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","HomeAdmin")">Home</a></li>
+                <li class="breadcrumb-item active">Order list</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section dashboard" style="background-color: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+        <header id="header" class="header d-flex align-items-center" style="border-radius:20px;margin-bottom:20px;">
+            <div class="search-bar" style="width:100%">
+            </div>
+        </header>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Invoice code")
+                </th>
+                <th>
+                    @Html.DisplayName("Customer")
+                </th>
+                <th>
+                    @Html.DisplayName("Employee")
+                </th>
+                <th>
+                    @Html.DisplayName("Order date")
+                </th>
+                <th>
+                    @Html.DisplayName("Shipping address")
+                </th>
+                <th>
+                    @Html.DisplayName("Total amount")
+                </th>
+                <th>
+                    @Html.DisplayName("Payment Status")
+                </th>
+                <th>
+                    @Html.DisplayName("Order status")
+                </th>
+                <th>
+                    @Html.DisplayName("Date of receipt")
+                </th>
+                <th>
+                    @Html.DisplayName("Coupon(%)")
+                </th>
+                @*<th>Xác nhận đơn</th>*@
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDatHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+                    </td>
+                    <td>
+                        @(item.TongGiaTri.HasValue ? item.TongGiaTri.Value.ToString("N0") + " ₫" : "-")
+                    </td>
+                    <td>
+                        @if (item.TrangThaiTT.HasValue)
+                        {
+                            @(item.TrangThaiTT.Value ? "Paid" : "Unpaid")
+                        }
+                    </td>
+                    <td>
+                        @switch (item.TrangThaiDH)
+                        {
+                            case 0:
+                                <span>Processing</span>
+                                break;
+                            case 1:
+                                <span>On delivery</span>
+                                break;
+                            case 2:
+                                <span>Delivered</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayNhanHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Coupon.GiamGia)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detail", "DetailOrder", new { id = item.MaHD }) |
+                        @Html.ActionLink("Edit", "UpdateOrder", new { id = item.MaHD }) |
+                        @Html.ActionLink("Delete", "DelOrder", new { id = item.MaHD })
+                    </td>
+                    @*<td>
+            @Html.ActionLink("Xác nhận", "UpdateOrderAd", "OrderAdmin", new { id = item.MADH }, null)
+        </td>*@
+                </tr>
+            }
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @if (Model.PageCount > 1)
+                {
+                    <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("ListOrder", "CustomerAdmin", new { page = 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">First</a>
+                    </li>
+
+                    <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("ListOrder", "CustomerAdmin",  new { page = Model.PageNumber - 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Previous</a>
+                    </li>
+                    for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("ListOrder", "CustomerAdmin",  new { page = i })">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("ListOrder", "CustomerAdmin", new { page = Model.PageNumber + 1 })">Next</a>
+                    </li>
+
+                    <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("ListOrder", "CustomerAdmin", new { page = Model.PageCount })">End</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </section>
+</main>
+
+
