@@ -156,8 +156,8 @@ namespace eFashionStore.Controllers
                     discount += (cart.GiamGia / 100.0m) * (cart.Gia * cart.SoLuong);
                 }
 
-                ViewBag.Discount = discount;
-                ViewBag.Total = (ViewBag.SubTotal - ViewBag.Discount) * (1 -(discountCoupon / 100));
+                ViewBag.Discount = discount / (1 - (discountCoupon / 100));
+                ViewBag.Total = (ViewBag.SubTotal - ViewBag.Discount);
 
                 return View("ListCarts", cartItems);
             }
@@ -377,7 +377,7 @@ namespace eFashionStore.Controllers
                     MaHD = order.MaHD,
                     MaSP = item.MaSp,
                     SoLuongDatHang = item.SoLuong,
-                    DonGia = (item.Gia * (1 - (item.GiamGia / 100))) * (1 - (discountCoupon / 100))
+                    DonGia = ((item.Gia * (1 - (item.GiamGia / 100))) * (1 - (discountCoupon / 100)))*item.SoLuong
                 };
                 _context.ChiTietHoaDons.InsertOnSubmit(orderDetail);
 
