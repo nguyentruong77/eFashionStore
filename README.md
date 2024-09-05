@@ -18,20 +18,20 @@ This project is a fully functional e-commerce website specializing in selling cl
 - **Product Details**  
   Each product page shows detailed information about the item, including price, sizes, colors, and availability.
   
-  ![Product Details](WebsiteScreenshots/localhost_44351_Product_Details.png)
-  
 - **Comments/Reviews**  
   Customers can leave comments and reviews on products to share their feedback.
+  
+  ![Product Details](WebsiteScreenshots/localhost_44351_Product_Details.png)
   
 - **Shopping Cart and Order Placement**  
   Users can add items to the shopping cart, review their selections, and place orders.
   
   ![Shopping Cart](WebsiteScreenshots/localhost_44351_Cart_ListCarts.png)
-  ![Order](WebsiteScreenshots/localhost_44351_Order_Order.png)
   
 - **Order History and Order Details**  
   Customers can view their past orders and track the status of ongoing purchases.
   
+  ![Order](WebsiteScreenshots/localhost_44351_Order_Order.png)
   ![Order Details](WebsiteScreenshots/localhost_44351_Order_OrderDetails.png)
 
 - **Contact Page**  
