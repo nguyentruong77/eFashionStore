@@ -480,6 +480,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
@@ -631,6 +632,12 @@
     <Content Include="Areas\Admin\Views\CustomerAdmin\ListOrder.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerAdmin\DelOrder.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerAdmin\DetailOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\DelPR.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\DelPT.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\DelCP.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\UpdateOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\ListReview.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerAdmin\DeleteReview.cshtml" />
     <None Include="Models\eFashionStore.dbml.layout">
       <DependentUpon>eFashionStore.dbml</DependentUpon>
     </None>

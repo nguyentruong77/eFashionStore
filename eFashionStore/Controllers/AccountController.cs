@@ -97,10 +97,6 @@ namespace eFashionStore.Controllers
                 {
                     ViewBag.PasswordError = "Incorrect password!";
                 }
-                else if ((bool)user.IsAdmin)
-                {
-                    ViewBag.UsernameError = "Username cannot be used for a user!";
-                }
                 else
                 {
                     //save session
@@ -108,6 +104,11 @@ namespace eFashionStore.Controllers
                     Session["UserId"] = user.UserID;
 
                     FormsAuthentication.SetAuthCookie(user.TenTaiKhoan, false);
+                    
+                    if ((bool)user.IsAdmin)
+                    {
+                        return RedirectToAction("Index", "HomeAdmin", new { area = "Admin", UserName = user.TenTaiKhoan });
+                    }    
 
                     if (Url.IsLocalUrl(returnUrl))
                     {

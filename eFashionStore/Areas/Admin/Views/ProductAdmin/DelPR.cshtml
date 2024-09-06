@@ -1,6 +1,6 @@
 ﻿@model eFashionStore.Models.SanPham
 @{
-    ViewBag.Title = "DetailPRAdmin";
+    ViewBag.Title = "DeleteProduct";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -53,5 +53,15 @@
             </div>
         </div>
     </section>
-</main>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit">Delete</button>
+        </div>
+        <a href="@Url.Action("Index","HomeAdmin")" style="text-decoration:none;font-size:15px;color:black;margin-left:20px;">
+            <i class="fa-solid fa-backward"></i>  Back to list
+        </a>
+    }
+</main>

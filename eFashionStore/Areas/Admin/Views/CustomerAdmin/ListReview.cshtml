@@ -1,19 +1,19 @@
 ﻿@using PagedList
 @using PagedList.Mvc
-@model IPagedList<eFashionStore.Models.Coupon>
+@model IPagedList<eFashionStore.Models.DanhGia>
 
 @{
-    ViewBag.Title = "BrandPR";
+    ViewBag.Title = "ListReview";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>List Of Coupon Codes</h1>
+        <h1>Review List</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="@Url.Action("Index","HomeAdmin")">Home</a></li>
-                <li class="breadcrumb-item active">List of Coupon codes</li>
+                <li class="breadcrumb-item active">Review list</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -21,7 +21,7 @@
         <div class="card mb-4">
             <div class="card-header" style="background-color:royalblue;color:white;border-radius:20px;">
                 <i class="fas fa-table me-1"></i>
-                List of Coupon Codes
+                Review List
             </div>
         </div>
 
@@ -33,13 +33,16 @@
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayName("Coupon Code")
+                        @Html.DisplayName("Product code")
                     </th>
                     <th>
-                        @Html.DisplayName("Discount")
+                        @Html.DisplayName("Customer name")
                     </th>
                     <th>
-                        Other
+                        @Html.DisplayName("Rating")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Comment")
                     </th>
                 </tr>
 
@@ -47,14 +50,19 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaCoupon)
+                            @Html.DisplayFor(modelItem => item.MaSP)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.GiamGia)
+                            @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "UpdateCP", new { id = item.MaCoupon }) |
-                            @Html.ActionLink("Delete", "DelCP", new { id = item.MaCoupon })
+                            @Html.DisplayFor(modelItem => item.SoSao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BinhLuan)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteReview", new { id1 = item.MaSP, id2 = item.MaKH })
                         </td>
                     </tr>
                 }
@@ -66,34 +74,29 @@
                 @if (Model.PageCount > 1)
                 {
                     <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("ListCP", "ProductAdmin", new { page = 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">First</a>
+                        <a class="page-link" href="@Url.Action("ListReview", "CustomerAdmin", new { page = 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">First</a>
                     </li>
 
                     <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("ListCP","ProductAdmin",  new { page = Model.PageNumber - 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Previous</a>
+                        <a class="page-link" href="@Url.Action("ListReview", "CustomerAdmin",  new { page = Model.PageNumber - 1 })" tabindex="-1" aria-disabled="@(Model.IsFirstPage ? "true" : "false")">Previous</a>
                     </li>
                     for (int i = 1; i <= Model.PageCount; i++)
                     {
                         <li class="page-item @(i == Model.PageNumber ? "active" : "")">
-                            <a class="page-link" href="@Url.Action("ListCP","ProductAdmin",  new { page = i })">@i</a>
+                            <a class="page-link" href="@Url.Action("ListReview", "CustomerAdmin",  new { page = i })">@i</a>
                         </li>
                     }
 
                     <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("ListCP", "ProductAdmin", new { page = Model.PageNumber + 1 })">Next</a>
+                        <a class="page-link" href="@Url.Action("ListReview", "CustomerAdmin", new { page = Model.PageNumber + 1 })">Next</a>
                     </li>
 
                     <li class="page-item @(Model.IsLastPage ? "disabled" : "")">
-                        <a class="page-link" href="@Url.Action("ListCP", "ProductAdmin", new { page = Model.PageCount })">End</a>
+                        <a class="page-link" href="@Url.Action("ListReview", "CustomerAdmin", new { page = Model.PageCount })">End</a>
                     </li>
                 }
             </ul>
         </nav>
-        <p>
-            <button class="btn btn-primary" onclick="window.location.href='@Url.Action("CreateCP","ProductAdmin")'">Create new Coupon code</button>
-        </p>
     </section>
 </main>
-
-
 

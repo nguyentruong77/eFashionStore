@@ -41,6 +41,12 @@
                 @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "floatingInputImage", @placeholder = "Enter email", @required = "required", @type = "email", @pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$" })
                 @Html.Label("Email:", new { @class = "form-label" })
                 @Html.ValidationMessageFor(model => model.Email, "Please enter email!", new { @class = "invalid-feedback" })
+                @if (ViewBag.EmailError != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.EmailError
+                    </div>
+                }
             </div>
 
             <div class="form-floating mb-3">
@@ -53,6 +59,12 @@
                 @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @id = "floatingStockInput", @type = "text", @placeholder = "Enter Phone number", @required = "required", @maxlength = "10", @minlength = "10", @pattern = @"\d{10}", @oninput = "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" })
                 @Html.Label("Phone number:", new { @class = "form-label" })
                 @Html.ValidationMessageFor(model => model.SDT, "Please enter a valid 10-digit phone number!", new { @class = "invalid-feedback" })
+                @if (ViewBag.SDTError != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.SDTError
+                    </div>
+                }
             </div>
 
 

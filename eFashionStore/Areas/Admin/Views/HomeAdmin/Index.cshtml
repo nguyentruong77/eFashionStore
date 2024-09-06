@@ -77,7 +77,8 @@
                         @Html.ActionLink("Edit", "UpdatePR", "ProductAdmin", new { id = item.MaSP }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Detail", "DetailPRAdmin", "ProductAdmin", new { id = item.MaSP }, null)
+                        @Html.ActionLink("Detail", "DetailPR", "ProductAdmin", new { id = item.MaSP }, null) |
+                        @Html.ActionLink("Delete", "DelPR", "ProductAdmin", new { id = item.MaSP }, null) |
                     </td>
                 </tr>
             }

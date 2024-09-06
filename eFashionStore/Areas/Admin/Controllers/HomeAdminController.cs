@@ -16,9 +16,9 @@ namespace eFashionStore.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index(int ?page)
         {
-            //string NameAdmin = Session["USERACCOUNT"].ToString();
-            //var checkAdmin = da.KHACHes.Where(x => x.TENTK.Equals(NameAdmin) && x.ISADMIN == 1).ToList();
-            //if (checkAdmin.Count > 0)
+            var username = Session["UserName"] as string;
+            NguoiDung nd = da.NguoiDungs.FirstOrDefault(s => s.TenTaiKhoan.Equals(username) && s.IsAdmin == true);
+            if (nd != null)
             {
                 int pageSize = 10; // Số sản phẩm trên mỗi trang
                 List<SanPham> sp = da.SanPhams.ToList();
@@ -26,6 +26,8 @@ namespace eFashionStore.Areas.Admin.Controllers
                 IPagedList<SanPham> pagedProducts =  sp.ToPagedList(pageNumber, pageSize);
                 return View(pagedProducts);
             }
+            else
+                return RedirectToAction("DenyAccess", "HomeAdmin");
         }
         public ActionResult Error404()
         {
