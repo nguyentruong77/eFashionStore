@@ -62,7 +62,7 @@
                             @Html.DisplayFor(modelItem => item.BinhLuan)
                         </td>
                         <td>
-                            @Html.ActionLink("Delete", "DeleteReview", new { id1 = item.MaSP, id2 = item.MaKH })
+                            @Html.ActionLink("Delete", "DeleteReview", new { id1 = item.MaSP.ToString().Trim(), id2 = item.MaKH })
                         </td>
                     </tr>
                 }

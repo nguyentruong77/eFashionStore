@@ -32,7 +32,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(newSP.MaSP.Trim()));
+                SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(newSP.MaSP));
                 if (sp == null)
                 {
                     da.SanPhams.InsertOnSubmit(newSP);
@@ -54,7 +54,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                var DetailPR = da.SanPhams.FirstOrDefault(x => x.MaSP.Equals(id.Trim()));
+                var DetailPR = da.SanPhams.FirstOrDefault(x => x.MaSP.Equals(id));
                 return View(DetailPR);
             }
             catch
@@ -66,7 +66,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                var sp = da.SanPhams.FirstOrDefault(x => x.MaSP.Equals(id.Trim()));
+                var sp = da.SanPhams.FirstOrDefault(x => x.MaSP.Equals(id));
                 List<LoaiSP> tenloai = da.LoaiSPs.ToList();
                 SelectList tenLoaiList = new SelectList(tenloai, "MaLoai", "TenLoai", sp.MaLoai);
                 ViewBag.tenLoaiList = tenLoaiList;
@@ -82,7 +82,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(upSP.MaSP.Trim()));
+                SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(upSP.MaSP));
                 if (sp != null)
                 {
                     sp.TenSP = upSP.MaSP;
@@ -108,7 +108,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(id.Trim()));
+                SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(id));
                 return View(sp);
             }
             catch
@@ -123,7 +123,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(id.Trim()));
+            SanPham sp = da.SanPhams.FirstOrDefault(s => s.MaSP.Equals(id));
             if (sp == null)
             {
                 return RedirectToAction("Error404", "HomeAdmin");
@@ -176,7 +176,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             try
             {
 
-                LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(newPT.MaLoai.Trim()));
+                LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(newPT.MaLoai));
                 if (lsp == null)
                 {
                     da.LoaiSPs.InsertOnSubmit(newPT);
@@ -196,7 +196,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         }
         public ActionResult UpdatePT(string id)
         {
-            LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(id.Trim()));
+            LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(id));
             return View(lsp);
         }
         [HttpPost]
@@ -204,7 +204,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(newPT.MaLoai.Trim()));
+                LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(newPT.MaLoai));
                 if (lsp != null)
                 {
                     lsp.TenLoai = newPT.TenLoai;
@@ -224,7 +224,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(id.Trim()));
+                LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(id));
                 return View(lsp);
             }
             catch
@@ -239,7 +239,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(id.Trim()));
+            LoaiSP lsp = da.LoaiSPs.FirstOrDefault(s => s.MaLoai.Equals(id));
             if (lsp == null)
             {
                 return RedirectToAction("Error404", "HomeAdmin");
@@ -286,7 +286,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             try
             {
 
-                Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(newCT.MaCoupon.Trim()));
+                Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(newCT.MaCoupon));
                 if (cp == null)
                 {
                     da.Coupons.InsertOnSubmit(newCT);
@@ -306,7 +306,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         }
         public ActionResult UpdateCP(string id)
         {
-            Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(id.Trim()));
+            Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(id));
             return View(cp);
         }
         [HttpPost]
@@ -314,7 +314,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(newCP.MaCoupon.Trim()));
+                Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(newCP.MaCoupon));
                 if (cp != null)
                 {
                     cp.GiamGia = newCP.GiamGia;
@@ -333,7 +333,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(id.Trim()));
+                Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(id));
                 return View(cp);
             }
             catch
@@ -348,7 +348,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(id.Trim()));
+            Coupon cp = da.Coupons.FirstOrDefault(s => s.MaCoupon.Equals(id));
             if (cp == null)
             {
                 return RedirectToAction("Error404", "HomeAdmin");

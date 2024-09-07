@@ -93,14 +93,14 @@ namespace eFashionStore.Areas.Admin.Controllers
         }
         public ActionResult DetailOrder(string id)
         {
-            List<ChiTietHoaDon> cthd = da.ChiTietHoaDons.Where(x => x.MaHD.Equals(id.Trim())).ToList();
+            List<ChiTietHoaDon> cthd = da.ChiTietHoaDons.Where(x => x.MaHD.Equals(id)).ToList();
             return View(cthd);
         }
         public ActionResult UpdateOrder(string id)
         {
             try
             {
-                HoaDon hd = da.HoaDons.FirstOrDefault(x => x.MaHD.Equals(id.Trim()));
+                HoaDon hd = da.HoaDons.FirstOrDefault(x => x.MaHD.Equals(id));
                 NguoiDung ad = da.NguoiDungs.FirstOrDefault(s => s.TenTaiKhoan.Equals(GetUserId()));
                 ViewBag.MaNV = ad.UserID;
                 return View(hd);
@@ -115,7 +115,7 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                HoaDon hd = da.HoaDons.FirstOrDefault(s => s.MaHD.Equals(newHD.MaHD.Trim()));
+                HoaDon hd = da.HoaDons.FirstOrDefault(s => s.MaHD.Equals(newHD.MaHD));
                 if (hd == null)
                     return RedirectToAction("Error404", "HomeAdmin");
                 if (newHD.NgayNhanHang < newHD.NgayDatHang)
@@ -142,7 +142,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            HoaDon hd  = da.HoaDons.FirstOrDefault(s => s.MaHD.Equals(id.Trim()));
+            HoaDon hd  = da.HoaDons.FirstOrDefault(s => s.MaHD.Equals(id));
             
             if (hd == null)
             {
@@ -158,14 +158,14 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            HoaDon hd = da.HoaDons.FirstOrDefault(s => s.MaHD.Equals(id.Trim()));
+            HoaDon hd = da.HoaDons.FirstOrDefault(s => s.MaHD.Equals(id));
             if (hd == null)
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }    
             try
             {
-                List<ChiTietHoaDon> cthd = da.ChiTietHoaDons.Where(s => s.MaHD.Equals(hd.MaHD.Trim())).ToList();
+                List<ChiTietHoaDon> cthd = da.ChiTietHoaDons.Where(s => s.MaHD.Equals(hd.MaHD)).ToList();
                 foreach (ChiTietHoaDon i in cthd)
                 {
                     da.ChiTietHoaDons.DeleteOnSubmit(i);
@@ -194,7 +194,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            DanhGia r = da.DanhGias.FirstOrDefault(s => s.MaSP.Equals(id1.Trim()) && s.MaKH == id2);
+            DanhGia r = da.DanhGias.FirstOrDefault(s => s.MaSP.Equals(id1) && s.MaKH == id2);
             if (r == null)
             {
                 return RedirectToAction("Error404", "HomeAdmin");
@@ -208,7 +208,7 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
-            DanhGia r = da.DanhGias.FirstOrDefault(s => s.MaSP.Equals(id1.Trim()) && s.MaKH == id2);
+            DanhGia r = da.DanhGias.FirstOrDefault(s => s.MaSP.Equals(id1) && s.MaKH == id2);
             if (r == null)
             {
                 return RedirectToAction("Error404", "HomeAdmin");

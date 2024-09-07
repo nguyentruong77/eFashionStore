@@ -61,7 +61,7 @@
                         @Html.DisplayFor(modelItem => item.TenTaiKhoan)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "UpdateCus", new { id = item.UserID })
+                        @Html.ActionLink("Edit", "UpdateCus", new { id = item.UserID.ToString().Trim() })
                     </td>
                 </tr>
             }

@@ -74,11 +74,11 @@
                         @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "UpdatePR", "ProductAdmin", new { id = item.MaSP }, null)
+                        @Html.ActionLink("Edit", "UpdatePR", "ProductAdmin", new { id = item.MaSP.ToString().Trim() }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Detail", "DetailPR", "ProductAdmin", new { id = item.MaSP }, null) |
-                        @Html.ActionLink("Delete", "DelPR", "ProductAdmin", new { id = item.MaSP }, null) |
+                        @Html.ActionLink("Detail", "DetailPR", "ProductAdmin", new { id = item.MaSP.ToString().Trim() }, null) |
+                        @Html.ActionLink("Delete", "DelPR", "ProductAdmin", new { id = item.MaSP.ToString().Trim() }, null) |
                     </td>
                 </tr>
             }

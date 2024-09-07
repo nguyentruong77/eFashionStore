@@ -64,7 +64,7 @@
                         @Html.DisplayFor(modelItem => item.MaHD)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
+                        @Html.DisplayFor(modelItem => item.MaKH)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
@@ -105,13 +105,10 @@
                         @Html.DisplayFor(modelItem => item.Coupon.GiamGia)
                     </td>
                     <td>
-                        @Html.ActionLink("Detail", "DetailOrder", new { id = item.MaHD }) |
-                        @Html.ActionLink("Edit", "UpdateOrder", new { id = item.MaHD }) |
-                        @Html.ActionLink("Delete", "DelOrder", new { id = item.MaHD })
+                        @Html.ActionLink("Detail", "DetailOrder", new { id = item.MaHD.ToString().Trim() }) |
+                        @Html.ActionLink("Edit", "UpdateOrder", new { id = item.MaHD.ToString().Trim() }) |
+                        @Html.ActionLink("Delete", "DelOrder", new { id = item.MaHD.ToString().Trim() })
                     </td>
-                    @*<td>
-            @Html.ActionLink("Xác nhận", "UpdateOrderAd", "OrderAdmin", new { id = item.MADH }, null)
-        </td>*@
                 </tr>
             }
         </table>

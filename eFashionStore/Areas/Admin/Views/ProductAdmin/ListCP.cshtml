@@ -53,8 +53,8 @@
                             @Html.DisplayFor(modelItem => item.GiamGia)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "UpdateCP", new { id = item.MaCoupon }) |
-                            @Html.ActionLink("Delete", "DelCP", new { id = item.MaCoupon })
+                            @Html.ActionLink("Edit", "UpdateCP", new { id = item.MaCoupon.ToString().Trim() }) |
+                            @Html.ActionLink("Delete", "DelCP", new { id = item.MaCoupon.ToString().Trim() })
                         </td>
                     </tr>
                 }
