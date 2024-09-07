@@ -51,7 +51,11 @@ This project is a fully functional e-commerce website specializing in selling cl
   Admins can perform create, read, update, and delete operations on products, users, coupons, and sales records.
   
   ![Products](WebsiteScreenshots/localhost_44351_Admin_HomeAdmin.png)
+  ![Product Type](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListProductType.png)
+  ![Coupon Code](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListCoupon.png)
   ![Customers](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListCus.png)
+  ![Order](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListOrder.png)
+  ![Review](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListReview.png)
 
 ## Database Structure
 ### ER Diagram:
