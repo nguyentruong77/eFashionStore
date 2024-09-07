@@ -2,6 +2,17 @@
 
 This project is a fully functional e-commerce website specializing in selling clothing items. It features customer and admin functionalities, offering a smooth shopping experience for users and comprehensive management tools for administrators.
 
+## Technologies Used
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap
+- **Backend:** ASP.NET MVC, Entity Framework, SQL Server
+- **Authentication:** ASP.NET Identity, BCrypt
+
+## Database Structure
+### ER Diagram:
+Include an entity-relationship diagram (ERD) to visualize how the database tables are related.
+
+  ![Database ER Diagram](WebsiteScreenshots/Capfs_database.png)
+
 ## Features
 
 ### Customer Functions
@@ -57,13 +68,3 @@ This project is a fully functional e-commerce website specializing in selling cl
   ![Order](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListOrder.png)
   ![Review](WebsiteScreenshots/localhost_44351_Admin_CustomerAdmin_ListReview.png)
 
-## Database Structure
-### ER Diagram:
-Include an entity-relationship diagram (ERD) to visualize how the database tables are related.
-
-  ![Database ER Diagram](WebsiteScreenshots/Capfs_database.png)
-
-## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **Backend:** ASP.NET MVC, Entity Framework, SQL Server
-- **Authentication:** ASP.NET Identity, BCrypt
