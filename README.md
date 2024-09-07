@@ -5,8 +5,7 @@ This project is a fully functional e-commerce website specializing in selling cl
 ## Technologies Used
 - **Frontend:** HTML, CSS, JavaScript, JQuery, Bootstrap
 - **Backend:** ASP.NET MVC, LINQ To SQL, SQL Server
-- **Authentication:** ASP.NET Identity, BCrypt
-- **Other:** .Net Mail, PagedList
+- **Other:** BCrypt,.Net Mail, PagedList
 
 ## Database Structure
 ### ER Diagram:
