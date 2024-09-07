@@ -3,9 +3,10 @@
 This project is a fully functional e-commerce website specializing in selling clothing items. It features customer and admin functionalities, offering a smooth shopping experience for users and comprehensive management tools for administrators.
 
 ## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **Backend:** ASP.NET MVC, Entity Framework, SQL Server
+- **Frontend:** HTML, CSS, JavaScript, JQuery, Bootstrap
+- **Backend:** ASP.NET MVC, LINQ To SQL, SQL Server
 - **Authentication:** ASP.NET Identity, BCrypt
+- - **Other:** .Net Mail, PagedList
 
 ## Database Structure
 ### ER Diagram:
