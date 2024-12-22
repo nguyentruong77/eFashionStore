@@ -104,6 +104,7 @@ namespace eFashionStore.Areas.Admin.Controllers
                 return RedirectToAction("Error404", "HomeAdmin");
             }
         }
+        // GET: Admin/ProductAdmin/DelPR
         public ActionResult DelPR(string id)
         {
             try
@@ -155,9 +156,9 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             try
             {
-                int pageSize = 10; // Số sản phẩm trên mỗi trang
+                int pageSize = 10;
                 var ListPT = da.LoaiSPs.ToList();
-                int pageNumber = (page ?? 1); // Trang mặc định là 1 nếu không có trang được chỉ định
+                int pageNumber = (page ?? 1);
                 IPagedList<LoaiSP> pagedPC = ListPT.ToPagedList(pageNumber, pageSize);
                 return View(pagedPC);
             }
@@ -276,10 +277,6 @@ namespace eFashionStore.Areas.Admin.Controllers
                 return RedirectToAction("Error404", "HomeAdmin");
             }
         }
-        public ActionResult CreateCP()
-        {
-            return View();
-        }
         [HttpPost]
         public ActionResult CreateCP(Coupon newCT)
         {
@@ -303,6 +300,10 @@ namespace eFashionStore.Areas.Admin.Controllers
             {
                 return RedirectToAction("Error404", "HomeAdmin");
             }
+        }
+        public ActionResult CreateCP()
+        {
+            return View();
         }
         public ActionResult UpdateCP(string id)
         {
