@@ -37,13 +37,5 @@ namespace eFashionStore.Areas.Admin.Controllers
         {
             return View();
         }
-        private string XuLyChuoi(string AccountNo)
-        {
-            if (AccountNo.Length() == 10)
-                AccountNo = AccountNo.Trim().ToUpper();
-            else
-                AccountNo = "001A" + AccountNo.Trim().ToUpper();
-            return AccountNo;
-        }
     }
 }
