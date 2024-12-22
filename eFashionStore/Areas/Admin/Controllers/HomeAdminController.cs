@@ -29,11 +29,11 @@ namespace eFashionStore.Areas.Admin.Controllers
             else
                 return RedirectToAction("DenyAccess", "HomeAdmin");
         }
-        public ActionResult Error404()
+        public ActionResult DenyAccess()
         {
             return View();
         }
-        public ActionResult DenyAccess()
+        public ActionResult Error404()
         {
             return View();
         }
