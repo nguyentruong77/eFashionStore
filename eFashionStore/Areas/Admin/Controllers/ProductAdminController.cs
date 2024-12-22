@@ -371,5 +371,17 @@ namespace eFashionStore.Areas.Admin.Controllers
                 return View(cp);
             }
         }
+        private string XuLyMaSP(string maSP)
+        {
+            if (maSP.Length() == 8)
+                maSP = maSP.Trim().ToUpper();
+            else
+                maSP = "SPL2" + maSP.Trim().ToUpper();
+            if (maSP.Length() == 10)
+            {
+                maSP = maSP.Trim().ToUpper() + "_Old";
+            }
+            return maSP;
+        }
     }
 }

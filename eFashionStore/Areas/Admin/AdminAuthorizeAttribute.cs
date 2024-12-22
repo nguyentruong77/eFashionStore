@@ -26,5 +26,17 @@ namespace eFashionStore.Areas.Admin
             else
                 return false;
         }
+        private string XuLyMaKH(string AccountNo)
+        {
+            if (AccountNo.Length() == 10)
+                AccountNo = AccountNo.Trim().ToUpper();
+            else
+                AccountNo = "HCM_" + AccountNo.Trim().ToUpper();
+            if (AccountNo.Length() == 14)
+            {
+                AccountNo = AccountNo.Trim().ToUpper() + "_Del";
+            }
+            return AccountNo;
+        }
     }
 }

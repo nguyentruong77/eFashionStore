@@ -233,5 +233,17 @@ namespace eFashionStore.Areas.Admin.Controllers
                 AccountNo = "001A" + AccountNo.Trim().ToUpper();
             return AccountNo;
         }
+        private string XuLyMaKH(string Account)
+        {
+            if (Account.Length() == 10)
+                Account = Account.Trim().ToUpper();
+            else
+                Account = "TTH_" + Account.Trim().ToUpper();
+            if (Account.Length() == 14)
+            {
+                Account = Account.Trim().ToUpper() + "_Epx";
+            }
+            return Account;
+        }
     }
 }
